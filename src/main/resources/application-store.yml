@@ -1,0 +1,126 @@
+#
+application:
+  port: 8010
+  name: client
+
+log:
+  level:
+    root: info
+    dao: debug
+  file: /home/dpi/log/dpi.log
+
+#websocket:
+#  enable: true
+#  message-timeout: 30
+#  login-timeout: 30
+
+#redis:
+#  cluster-hosts: '47.103.65.29:6379:Ji3$k&6&q5!L'
+#  max-total: 200
+#  max-idle: 100
+#  min-idle: 0
+#  test-borrow: false
+#  test-return: false
+#  # second
+#  ttl: 1800
+#  key-head: core-
+
+forsrc:
+  # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
+  authorization:
+    # 如果是企业，配置 appid，如果 appid 为空，使用 username 验证
+    appid: 1234
+    # appid 对应的秘钥，如果 appid 不为空，秘钥不能为空
+    secret: abcd
+    # 用户名，如果 appid 不为空，忽略此配置
+    username: feng
+    # 密码，如果 username 不为空，密码不能为空，如果 appid 不为空，忽略此配置
+    password: 12345
+  # 文件源配置，如果 generator.from-file 为 false，忽略此配置
+  filesource:
+    # 指定设计文档的路径，目前仅支持 docx 格式
+#    doc-file: 'E:/prog/java/feng/doc/db/core数据库设计2020年5月1日.docx'
+#    doc-file: 'E:/prog/java/2020/dpi/doc/db/dpi数据库设计2020年5月1日.docx'
+#    doc-file: 'E:/prog/java/2020/dpi/doc/db/dpi数据库设计2020年7月1日 - 演示.docx'
+#     dpi
+#    doc-file: 'E:/prog/java/2020/dpi/doc/git/develop/数据库设计/DPI通信数据库表设计.docx'
+    doc-file: 'E:/prog/java/2020/dpi/doc/git/develop/数据库设计/DPI通信数据库表设计 - 重庆.docx'
+    # aatp
+#    doc-file: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/db/cvat数据库设计2021年03月18日1.docx'
+#    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
+    table-has-header: false
+    # 设置是否检查关键字，设置为true将检查数据库关键字，java关键字和内部关键字不管是否设置都会检查。如果不检查生成的源码有可能出现错误。
+    check-reserve-word: true
+    # 文档中字段属性所在的列，从 1 开始，-1 表示无此定义，前三个属性title, name, type必须定义
+    field-property-column:
+      # 字段标题
+      title: 1
+      # 字段名称，参数格式(字母开头，字母，数字或下划线组成)
+      name: 2
+      # 字段数据库类型
+      type: 3
+      # 是否非空，非空字段设置为'是'，可空字段不用填
+      notnull: 4
+      # 缺省值
+      default-value: 5
+      # 字段说明，字段配置均在此列
+      description: 6
+  # 数据库配置，如果 generator.from-file 为 true，忽略此配置
+  datasource:
+    # 数据库类型，目前仅支持 mysql
+    type: mysql
+    host: 124.70.204.115
+    port: 3999
+    database: dpi_gp
+    username: 'dbuser'
+    password: 'G4f#I&Kg^6Hc'
+  generator:
+    # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
+    from-file: true
+    application:
+      language: java  # 开发语言。目前仅支持java。可选：java,python,c,c++,c#,scala,go,javascript,typescript,php,objectivec,kotlin.
+      type: bigdata
+      framework: kafka-store  # 应用框架
+      database-type: greenplum  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
+      web: ''  # web端模式
+      branch: base  # 分支，不同分支功能不同
+      version: 1.0  # 分支版本，0 最新版本
+    filter:
+      table:
+        # 指定仅生成以表头部开头的表，!开头表示不以这个开头的，与其它条件为 and 关系，不能设置多个。
+        #      name-prefix: 't_'
+        name-prefix: ''
+        # 指定表名包含什么内容，仅字母、数字或下划线，与其它条件为 and 关系，不能设置多个。
+        name-contain: ''
+        # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
+        table-regex: ""
+        # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系
+        tables: ''
+    #      tables: 'schemata, tables, columns, table_constraints, statistics'
+    option:
+      database:
+        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false
+        rid-table-prefix: true
+        # 缺省查询显示字段总个数，默认10，可以在外键字段中配置selectFieldTotal来设置外键表中显示出的字段数，0自动计算，-1全部不显示
+        # 此值目前在服务器端设置，客户端设置无效
+        select-field-total: 20
+    project:
+      name: 'dpi'   # 项目名称
+      title: '探针' # 项目标题
+      # 包的名称，所有生成的程序都在这个包下面
+      src-pack: 'com.project.dpi'
+    output:
+      # 如果存在时是否覆盖，true覆盖，false不覆盖
+      rewrite-on-exist: true
+      # 是否生成 src 部分
+      generator-src: true
+      # 是否生成 web 部分
+      generator-web: true
+      # 是否生成 sql 语句
+      generator-sql: true
+      # src 的保存路径
+      save-src-path: 'E:/prog/java/2020/dpi/store/source/src'
+      # web 的保存路径
+      save-web-path: 'E:/prog/java/2020/dpi/vue/src'
+      # sql 的保存路径
+      save-sql-path: 'E:/prog/java/2020/dpi/doc/db/sql'

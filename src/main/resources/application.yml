@@ -1,0 +1,147 @@
+server:
+  port: ${application.port}
+  tomcat:
+    max-threads: 500
+    accept-count: 500
+    min-spare-threads: 200
+
+spring:
+  application:
+    name: ${application.name}
+  profiles:
+#    include: dpi
+#    include: store
+#    include: flink
+    include: attp
+#    include: attp-algo
+#    include: attp-store
+#    include: aimp
+#    include: callnvd
+##    active: prd
+  boot:
+    admin:
+      client:
+        enabled: true
+        auto-registration: true
+        instance:
+          prefer-ip: true
+  main:
+    allow-bean-definition-overriding: true
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    database: 0
+    timeout: 5000
+    # 过期时间，second
+    ttl: 3600
+    # 刷新时间，second，获取缓存后判断，当缓存过期时间小于或等于这个时间时刷新过期时间
+    refresh: 3500
+    lettuce:
+      pool:
+        # 最大活跃链接数 默认8ew
+        max-active: 8
+        # 最大等待时间ms 默认-1无限等待
+        max-wait: 1000
+        # 最大空闲连接数 默认8
+        max-idle: 8
+        # 最小空闲连接数 默认0
+        min-idle: 0
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    jdbc-url: jdbc:mysql://${forsrc.datasource.host}:${forsrc.datasource.port}/information_schema?serverTimezone=PRC&autoReconnect=true&characterEncoding=utf8&useUnicode=true&useSSL=false
+    username: ${forsrc.datasource.username}
+    password: ${forsrc.datasource.password}
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+    driver: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 60000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filters: stat,wall
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 2000
+    mybatis:
+      mapper-locations: classpath*:mybatis/**/*.xml
+  liquibase:
+    enabled: false
+  thymeleaf:
+    cache: false
+    check-template-location: true
+    prefix: classpath:/templates/
+    suffix: .html
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
+logging:
+  level:
+    root: ${log.level.root}
+    com.project.local: ${log.level.root}
+    com.project.local.repository: ${log.level.root}
+    com.project.local.mvc.dao: ${log.level.dao}
+  file:
+    name: ${log.file}
+
+thread:
+  pool:
+    corePoolSize: 10
+    maxPoolSize: 50
+    queueCapacity: 100
+    keepAliveSeconds: 300
+
+okhttp:
+  connect-timeout: 30
+  read-timeout: 30
+  write-timeout: 30
+  # 连接池中整体的空闲连接的最大数量
+  max-idle-connections: 200
+  # 连接空闲时间最多为 300 秒
+  keep-alive-duration: 300
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: ${spring.application.name}
+
+feign:
+  hystrix:
+    enabled: true
+
+token:
+  key: L5H^k6U4a&Cf3J!k
+  valid-day: 15
+
+forsrc:
+  server:
+#    host: https://www.forsrc.com
+#    host: localhost
+    host: 10.193.244.110
+#    host: 211.139.122.165
+#    port: 80
+    port: 8101
+#    port: 5510
+    path:
+      generator: forsrc/generator
+      download: forsrc/download
