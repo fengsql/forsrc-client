@@ -14,6 +14,6 @@ import java.util.List;
 @Data
 public class ConfigProtected {
 
-  private List<String> protectedFileOrPath;
+  private List<String> protectedFilePath;
 
 }

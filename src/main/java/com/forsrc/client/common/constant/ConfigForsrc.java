@@ -1,12 +1,14 @@
 package com.forsrc.client.common.constant;
 
 import com.forsrc.common.tool.Tool;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Configuration
 public class ConfigForsrc {
@@ -14,7 +16,8 @@ public class ConfigForsrc {
   @Resource
   private ConfigProtected configProtected;
 
-  private static List<String> protectedFileOrPath;
+  @Getter
+  private static Set<String> protectedFilePath;
 
   public static class forsrc {
 
@@ -95,7 +98,7 @@ public class ConfigForsrc {
       }
 
       public static class output {
-        public static boolean rewriteOnExist;
+//        public static boolean rewriteOnExist;
         public static boolean generatorSrc;
         public static boolean generatorWeb;
         public static boolean generatorSql;
@@ -112,9 +115,7 @@ public class ConfigForsrc {
   }
 
   private void setProtectedFileOrPath() {
-    protectedFileOrPath = configProtected.getProtectedFileOrPath();
-    //    protectedFileOrPath = new ArrayList<>();
-    //    protectedFileOrPath.addAll(configProtected.getProtectedFileOrPath());
+    protectedFilePath = new HashSet<>(configProtected.getProtectedFilePath());
   }
 
   //forsrc-authorization
@@ -328,10 +329,10 @@ public class ConfigForsrc {
   }
 
   //forsrc-generator-output
-  @Value("${forsrc.generator.output.rewrite-on-exist:false}")
-  public void setForsrc_generator_output_rewriteOnExist(String value) {
-    forsrc.generator.output.rewriteOnExist = Tool.toBoolean(value);
-  }
+//  @Value("${forsrc.generator.output.rewrite-on-exist:false}")
+//  public void setForsrc_generator_output_rewriteOnExist(String value) {
+//    forsrc.generator.output.rewriteOnExist = Tool.toBoolean(value);
+//  }
 
   @Value("${forsrc.generator.output.generator-src:true}")
   public void setForsrc_generator_output_generatorSrc(String value) {
