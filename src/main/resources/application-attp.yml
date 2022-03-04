@@ -106,8 +106,6 @@ forsrc:
       # 包的名称，所有生成的程序都在这个包下面
       src-pack: 'com.project.amygo.aatp.site'
     output:
-      # 如果存在时是否覆盖，true覆盖，false不覆盖
-      rewrite-on-exist: true
       # 是否生成 src 部分
       generator-src: true
       # 是否生成 web 部分
@@ -120,7 +118,8 @@ forsrc:
       save-web-path: 'E:\prog\java\2021\amygo\project\aatp\web\vue\src'
       # sql 的保存路径
       save-sql-path: 'E:\prog\java\2021\amygo\project\aatp\doc\db\sql'
-      # 保护的文件或路径，如果是文件夹，以文件分隔符/或\结束。如果不存在，写入文件或文件夹。如果已经存在，跳过文件或文件夹，不覆盖。
-      protected-file-or-path:
-        - 'E:\prog\java\2021\amygo\project\aatp\prog\aatp-site\source\src\main\resources\application-main.yml'
-        - 'E:\prog\java\2021\amygo\project\aatp\prog\aatp-site\source\src\main\java\com\project\amygo\aatp\site\security\service\'
+      # 保护的文件或路径，绝对路径，区分大小写。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
+      protected-file-path:
+        - '${forsrc.generator.output.save-src-path}\main\resources\application-main.yml'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\pretreat'
