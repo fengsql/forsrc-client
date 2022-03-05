@@ -15,12 +15,14 @@ import com.forsrc.data.common.bean.ResultGenerator;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileFilter;
-import java.util.*;
+import java.util.Set;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -132,10 +134,13 @@ public class Download extends BForsrc {
     String tempPath = getTempPath();
     try {
       String path = tempPath + File.separator + generatorItemType.getName();
+//      log.info("unzip start. name: {}", generatorItemType.getName());
       ToolZip.unzip(bytes, path);
+//      log.info("copyFile start. name: {}", generatorItemType.getName());
       savePath = Tool.toLocalPath(savePath);
       copyFile(path, savePath);
     } finally {
+//      log.info("copyFile ok. name: {}", generatorItemType.getName());
       deletePath(tempPath);
     }
   }
@@ -145,70 +150,38 @@ public class Download extends BForsrc {
     srcPath = initPath(srcPath);
     dstPath = initPath(dstPath);
     FileFilter fileFilter = getFileFilter(srcPath, dstPath);
-    FileUtils.copyDirectory(new File(srcPath), new File(dstPath), fileFilter);
+    FileUtils.copyDirectory(new File(srcPath), new File(dstPath), fileFilter);  //fileFilter.accept 为 true 复制，false 跳过
   }
 
   private FileFilter getFileFilter(String srcPath, String dstPath) {
-    Set<String> setFile = new HashSet<>();
-    Set<String> setPath = new HashSet<>();
-    getFileSkip(srcPath, dstPath, setFile, setPath);
-    if (setFile.size() == 0 && setPath.size() == 0) {
-      return null;
-    }
     FileFilter fileFilter = new FileFilter() {
       @SneakyThrows
       @Override
-      public boolean accept(File pathname) {
-        if (pathname.isDirectory()) {
-          if (setPath.contains(pathname.getCanonicalPath())) {
-            return false;
-          } else {
-            return true;
-          }
-        } else {
-          if (setFile.contains(pathname.getCanonicalPath())) {
-            return false;
-          } else {
-            return true;
-          }
+      public boolean accept(File pathname) {  //fileFilter.accept 为 true 通过，false 跳过
+        String srcFile = pathname.getCanonicalPath();
+        String dstFile = toTargetFile(srcPath, dstPath, srcFile);
+        if (!ToolFile.existFile(dstFile)) {
+          return true;
         }
+        return acceptMatch(dstFile);
       }
     };
     return fileFilter;
   }
 
-  private void getFileSkip(String srcPath, String dstPath, Set<String> setFile, Set<String> setPath) {
+  private boolean acceptMatch(String dstFile) {
     Set<String> skipFiles = ConfigForsrc.getProtectedFilePath();
     for (String skipFile : skipFiles) {
-      if (Tool.isNull(skipFile)) {
-        continue;
-      }
-      if (!ToolFile.existFile(skipFile)) {
-        continue;
-      }
-      skipFile = initPath(skipFile);
-      if (!isPath(skipFile)) {
-        if (skipFile.startsWith(dstPath)) {
-          skipFile = toSourceFile(srcPath, dstPath, skipFile);
-          setFile.add(skipFile);
-        }
-      } else {
-        if (skipFile.startsWith(dstPath)) {
-          skipFile = toSourceFile(srcPath, dstPath, skipFile);
-          setPath.add(skipFile);
-        }
+      if (FilenameUtils.wildcardMatch(dstFile, skipFile)) {
+        return false;
       }
     }
+    return true;
   }
 
-  private String toSourceFile(String srcPath, String dstPath, String skipFile) {
-    String tail = skipFile.substring(dstPath.length());
-    return ToolFile.joinFileName(srcPath, tail);
-  }
-
-  private boolean isPath(String skipFile) {
-    File file = new File(skipFile);
-    return file.isDirectory();
+  private String toTargetFile(String srcPath, String dstPath, String srcFile) {
+    String tail = srcFile.substring(srcPath.length());
+    return ToolFile.joinFileName(dstPath, tail);
   }
 
   private String initPath(String fileName) {
