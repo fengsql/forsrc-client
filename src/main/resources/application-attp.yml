@@ -122,4 +122,5 @@ forsrc:
       protected-file-path:
         - '${forsrc.generator.output.save-src-path}\main\resources\application*'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\handle'

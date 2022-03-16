@@ -93,10 +93,17 @@ logging:
 
 thread:
   pool:
-    corePoolSize: 10
-    maxPoolSize: 50
-    queueCapacity: 100
-    keepAliveSeconds: 300
+    executor:
+      corePoolSize: 10
+      maxPoolSize: 50
+      queueCapacity: 100
+      keepAliveSeconds: 300
+      awaitTerminationSeconds: 60  #设置线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁，而不是阻塞住
+      threadNamePrefix: "taskExecutor-"
+    scheduler:
+      poolSize: 10
+      awaitTerminationSeconds: 60  #
+      threadNamePrefix: "taskScheduler-"
 
 okhttp:
   connect-timeout: 30

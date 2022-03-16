@@ -123,7 +123,8 @@ public class Download extends BForsrc {
     } else {
       unzipCopy(generatorItemType, bytes, savePath);
     }
-    log.info("down {} ok. size: {}. savePath: {}", generatorItemType.getName(), bytes.length, savePath);
+    String sizeText = ToolFile.getFileSizeText(bytes.length);
+    log.info("down {} ok. size: {}. savePath: {}", generatorItemType.getName(), sizeText, savePath);
   }
 
   private void unzipDest(Enum.GeneratorItemType generatorItemType, byte[] bytes, String savePath) {
@@ -134,13 +135,13 @@ public class Download extends BForsrc {
     String tempPath = getTempPath();
     try {
       String path = tempPath + File.separator + generatorItemType.getName();
-//      log.info("unzip start. name: {}", generatorItemType.getName());
+      //      log.info("unzip start. name: {}", generatorItemType.getName());
       ToolZip.unzip(bytes, path);
-//      log.info("copyFile start. name: {}", generatorItemType.getName());
+      //      log.info("copyFile start. name: {}", generatorItemType.getName());
       savePath = Tool.toLocalPath(savePath);
       copyFile(path, savePath);
     } finally {
-//      log.info("copyFile ok. name: {}", generatorItemType.getName());
+      //      log.info("copyFile ok. name: {}", generatorItemType.getName());
       deletePath(tempPath);
     }
   }
