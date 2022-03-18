@@ -12,9 +12,9 @@ spring:
 #    include: dpi
 #    include: store
 #    include: flink
-    include: attp
+#    include: attp
 #    include: attp-algo
-#    include: attp-store
+    include: attp-store
 #    include: aimp
 #    include: callnvd
 ##    active: prd

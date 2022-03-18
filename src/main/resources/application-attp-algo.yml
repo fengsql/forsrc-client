@@ -89,7 +89,7 @@ forsrc:
         # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
         table-regex: ""
         # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系
-        tables: 'auth_user, t_file_upload, t_algo_task, engine_data'
+        tables: 'auth_user, auth_company, t_province, t_city, t_file_upload, t_algo_task, engine_project, engine_task, engine_data'
     #      tables: 'schemata, tables, columns, table_constraints, statistics'
     option:
       database:
@@ -120,3 +120,9 @@ forsrc:
       save-web-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/prog/js/vue/src'
       # sql 的保存路径
       save-sql-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/develop/db/sql'
+      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
+      protected-file-path:
+        - '${forsrc.generator.output.save-src-path}\main\resources\application*'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\security\service'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\spring\base'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\algo\site\mvc\handle'

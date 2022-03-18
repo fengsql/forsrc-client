@@ -7,7 +7,9 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Configuration
@@ -115,7 +117,17 @@ public class ConfigForsrc {
   }
 
   private void setProtectedFileOrPath() {
-    protectedFilePath = new HashSet<>(configProtected.getProtectedFilePath());
+    protectedFilePath = new HashSet<>();
+    List<String> filePaths = configProtected.getProtectedFilePath();
+    if (filePaths == null) {
+      return;
+    }
+    for (String filePath: filePaths) {
+      filePath = Tool.replace(filePath, "/", File.separator);
+      filePath = Tool.replace(filePath, "\\", File.separator);
+      filePath = Tool.replace(filePath, ".", File.separator);
+      protectedFilePath.add(filePath);
+    }
   }
 
   //forsrc-authorization

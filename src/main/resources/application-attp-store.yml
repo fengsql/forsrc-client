@@ -87,15 +87,9 @@ forsrc:
         # 指定表名包含什么内容，仅字母、数字或下划线，与其它条件为 and 关系，不能设置多个。
         name-contain: ''
         # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
-        table-regex: "t_\\w*, engine_\\w*, auth_user"
+        table-regex: "t_\\w*, engine_\\w*, auth_user, auth_company"
         # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系
         tables: ''
-#        tables: 'auth_user, t_file_upload, t_algo_task, t_algo_shape,
-#                 engine_profile, engine_data, engine_clientfile, engine_image,
-#                 engine_issue, engine_comment, engine_job, engine_jobcommit, engine_label, engine_project,
-#                 engine_remotefile, engine_serverfile, engine_task, engine_segment, engine_video,
-#                 engine_attributespec, engine_labeledimage, engine_labeledimageattributeval, engine_labeledshape, engine_labeledshapeattributeval,
-#                 engine_labeledtrack, engine_labeledtrackattributeval, engine_trackedshape, engine_trackedshapeattributeval, engine_review'
     #      tables: 'schemata, tables, columns, table_constraints, statistics'
     option:
       database:
@@ -126,3 +120,9 @@ forsrc:
       save-web-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/prog/js/vue/src'
       # sql 的保存路径
       save-sql-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/develop/db/sql'
+      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
+      protected-file-path:
+        - '${forsrc.generator.output.save-src-path}\main\resources\application*'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\security\service'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\spring\base'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\mvc\handle'
