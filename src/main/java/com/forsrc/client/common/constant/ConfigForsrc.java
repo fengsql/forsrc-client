@@ -125,7 +125,8 @@ public class ConfigForsrc {
     for (String filePath: filePaths) {
       filePath = Tool.replace(filePath, "/", File.separator);
       filePath = Tool.replace(filePath, "\\", File.separator);
-      filePath = Tool.replace(filePath, ".", File.separator);
+//      filePath = Tool.replace(filePath, ".", File.separator);
+//      filePath = Tool.replace(filePath, ":", ".");
       protectedFilePath.add(filePath);
     }
   }

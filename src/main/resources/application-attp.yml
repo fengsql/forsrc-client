@@ -118,10 +118,10 @@ forsrc:
       save-web-path: 'E:\prog\java\2021\amygo\project\aatp\web\vue\src'
       # sql 的保存路径
       save-sql-path: 'E:\prog\java\2021\amygo\project\aatp\doc\db\sql'
-      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符，"."将替换为文件夹分隔符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
+      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
       protected-file-path:
         - '${forsrc.generator.output.save-src-path}\main\resources\application*'
-        - '${forsrc.generator.output.save-src-path}\main\java\com.project.amygo.aatp.site.common.constant'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\constant\EnumCode.java'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\handle'

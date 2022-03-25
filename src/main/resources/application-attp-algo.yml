@@ -123,6 +123,7 @@ forsrc:
       # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
       protected-file-path:
         - '${forsrc.generator.output.save-src-path}\main\resources\application*'
+        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\constant\EnumCode.java'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\security\service'
         - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\spring\base'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\algo\site\mvc\handle'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\algo\site\mvc\handle'
