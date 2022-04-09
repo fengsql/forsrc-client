@@ -89,7 +89,7 @@ public class ConfigForsrc {
       public static class option {
         public static class database {
           public static boolean ridTablePrefix;
-          public static int selectFieldTotal;
+          public static int selectFieldNum;
         }
       }
 
@@ -320,9 +320,9 @@ public class ConfigForsrc {
     forsrc.generator.option.database.ridTablePrefix = Tool.toBoolean(value);
   }
 
-  @Value("${forsrc.generator.option.database.select-field-total:10}")
-  public void setForsrc_generator_option_database_selectFieldTotal(String value) {
-    forsrc.generator.option.database.selectFieldTotal = Tool.toInt(value);
+  @Value("${forsrc.generator.option.database.select-field-num:10}")
+  public void setForsrc_generator_option_database_selectFieldNum(String value) {
+    forsrc.generator.option.database.selectFieldNum = Tool.toInt(value);
   }
 
   //forsrc-generator-project

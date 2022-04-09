@@ -17,6 +17,8 @@ spring:
 #    include: attp-store
 #    include: aimp
 #    include: callnvd
+#    include: rtdg
+
 ##    active: prd
   boot:
     admin:

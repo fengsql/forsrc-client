@@ -39,9 +39,9 @@ forsrc:
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
-    # aatp
-    doc-file: 'E:\prog\java\2021\amygo\project\aatp\doc\db\数据库设计-20211213.docx'
-    #    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
+    # rtdg
+    doc-file: 'E:\prog\java\nanjing\develop\project\rtdg\doc\db\数据库文档-20220408.docx'
+#    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
     table-has-header: false
     # 设置是否检查关键字，设置为true将检查数据库关键字，java关键字和内部关键字不管是否设置都会检查。如果不检查生成的源码有可能出现错误。
     check-reserve-word: false
@@ -75,26 +75,26 @@ forsrc:
       language: java  # 开发语言。目前仅支持java。可选：java,python,c,c++,c#,scala,go,javascript,typescript,php,objectivec,kotlin.
       type: springboot  # 应用类型
       framework: spring  # 应用框架
-      database-type: postgresql  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
+      database-type: mysql  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
       web: vue  # web端模式
       branch: base  # 分支，不同分支功能不同
       version: 1.0  # 分支版本，0 最新版本
     filter:
       table:
         # 指定仅生成以表头部开头的表，!开头表示不以这个开头的，与其它条件为 and 关系，不能设置多个。
-        #      name-prefix: 't_'
+  #      name-prefix: 't_'
         name-prefix: ''
         # 指定表名包含什么内容，仅字母、数字或下划线，与其它条件为 and 关系，不能设置多个。
         name-contain: ''
         # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
-        table-regex: "t_\\w*, engine_\\w*, auth_user, auth_company"
-        # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系
+        table-regex: ""
+        # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系。
         tables: ''
     #      tables: 'schemata, tables, columns, table_constraints, statistics'
     option:
       database:
-        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 t_user 表，去掉后类名为 User，不去掉为 TUser
-        rid-table-prefix: false
+        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
+        rid-table-prefix: true
         # 缺省查询显示字段总个数，默认10，可以在外键字段中配置selectFieldNum来设置外键表中显示出的字段数，0自动计算，-1全部不显示
         # 此值目前在服务器端设置，客户端设置无效
         select-field-num: 20
@@ -104,26 +104,25 @@ forsrc:
       name: 'aatp'   # 项目名称
       title: 'Amygo标注管理平台' # 项目标题
       # 包的名称，所有生成的程序都在这个包下面
-      src-pack: 'com.project.amygo.aatp.algo'
+      src-pack: 'com.project.rtdg.site'
     output:
-      # 如果存在时是否覆盖，true覆盖，false不覆盖
-      rewrite-on-exist: true
       # 是否生成 src 部分
       generator-src: true
       # 是否生成 web 部分
-      generator-web: false
+      generator-web: true
       # 是否生成 sql 语句
-      generator-sql: false
+      generator-sql: true
       # src 的保存路径
-      save-src-path: 'E:\prog\java\2021\amygo\project\aatp\prog\aatp-store\source\src'
+      save-src-path: 'E:\prog\java\nanjing\develop\project\rtdg\prog\java\site\source\src'
       # web 的保存路径
-      save-web-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/prog/js/vue/src'
+      save-web-path: 'E:\prog\java\nanjing\develop\project\rtdg\prog\web\site\vue\source'
       # sql 的保存路径
-      save-sql-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/develop/db/sql'
+      save-sql-path: 'E:\prog\java\nanjing\develop\project\rtdg\doc\db\sql'
       # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
       protected-file-path:
         - '${forsrc.generator.output.save-src-path}\main\resources\application*'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\constant\EnumCode.java'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\security\service'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\common\spring\base'
-#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\algo\mvc\handle'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\constant\EnumCode.java'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\event'
+#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\handle'

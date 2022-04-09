@@ -54,7 +54,7 @@ public class Generator extends BForsrc {
   private static final String password = ConfigForsrc.forsrc.authorization.password;
   //
   private static final boolean ridTablePrefix = ConfigForsrc.forsrc.generator.option.database.ridTablePrefix;
-  private static int selectFieldTotal = ConfigForsrc.forsrc.generator.option.database.selectFieldTotal;
+  private static int selectFieldNum = ConfigForsrc.forsrc.generator.option.database.selectFieldNum;
 
   private static String url = null;
 
@@ -139,7 +139,7 @@ public class Generator extends BForsrc {
   private void setOptionDatabase(GeneratorOption generatorOption) {
     OptionDatabase optionDatabase = new OptionDatabase();
     optionDatabase.setRidTablePrefix(ridTablePrefix);
-    optionDatabase.setSelectFieldTotal(selectFieldTotal);
+    optionDatabase.setSelectFieldNum(selectFieldNum);
     generatorOption.setOptionDatabase(optionDatabase);
   }
 

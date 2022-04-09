@@ -99,9 +99,9 @@ forsrc:
       database:
         # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false
         rid-table-prefix: true
-        # 缺省查询显示字段总个数，默认10，可以在外键字段中配置selectFieldTotal来设置外键表中显示出的字段数，0自动计算，-1全部不显示
+        # 缺省查询显示字段总个数，默认10，可以在外键字段中配置selectFieldNum来设置外键表中显示出的字段数，0自动计算，-1全部不显示
         # 此值目前在服务器端设置，客户端设置无效
-        select-field-total: 20
+        select-field-num: 20
         # sql语句是否添加注释，true添加。
         sql-comment: true
     project:
