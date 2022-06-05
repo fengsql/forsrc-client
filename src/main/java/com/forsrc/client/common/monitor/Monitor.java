@@ -1,4 +1,4 @@
-package com.forsrc.client.common.monitor.common;
+package com.forsrc.client.common.monitor;
 
 import com.forsrc.client.forsrc.manager.ManagerForsrc;
 import lombok.Getter;

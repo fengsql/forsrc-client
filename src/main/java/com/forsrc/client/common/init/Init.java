@@ -1,6 +1,6 @@
 package com.forsrc.client.common.init;
 
-import com.forsrc.client.common.monitor.common.Monitor;
+import com.forsrc.client.common.monitor.Monitor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
