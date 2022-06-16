@@ -20,7 +20,7 @@ public class Generator extends BForsrc {
   private static final String http_protocol = "http://";
   private static final String https_protocol = "https://";
 
-  private static final String host_default = "www.forsrc.com";
+  private static final String host_default = "gen.forsrc.com";
   private static final int port_default = 80;
   private static final String path_default = "forsrc/generator";
 
@@ -38,6 +38,7 @@ public class Generator extends BForsrc {
   private static final String databaseType = ConfigForsrc.forsrc.generator.application.databaseType;
   private static final String web = ConfigForsrc.forsrc.generator.application.web;
   private static final String branch = ConfigForsrc.forsrc.generator.application.branch;
+  private static final String appKey = ConfigForsrc.forsrc.generator.application.appKey;
   private static final String version = ConfigForsrc.forsrc.generator.application.version;
 
   private static final String projectName = ConfigForsrc.forsrc.generator.project.name;
@@ -51,7 +52,7 @@ public class Generator extends BForsrc {
   private static final String appid = ConfigForsrc.forsrc.authorization.appid;
   private static final String secret = ConfigForsrc.forsrc.authorization.secret;
   private static final String username = ConfigForsrc.forsrc.authorization.username;
-  private static final String password = ConfigForsrc.forsrc.authorization.password;
+  private static final String userKey = ConfigForsrc.forsrc.authorization.userkey;
   //
   private static final boolean ridTablePrefix = ConfigForsrc.forsrc.generator.option.database.ridTablePrefix;
   private static int selectFieldNum = ConfigForsrc.forsrc.generator.option.database.selectFieldNum;
@@ -156,6 +157,7 @@ public class Generator extends BForsrc {
     reqGenerator.setDatabaseType(databaseType);
     reqGenerator.setWeb(web);
     reqGenerator.setBranch(branch);
+    reqGenerator.setAppKey(appKey);
     reqGenerator.setVersion(version);
 
     reqGenerator.setProjectName(projectName);
@@ -171,7 +173,7 @@ public class Generator extends BForsrc {
     reqGenerator.setAppid(appid);
     reqGenerator.setUsername(username);
     //
-    reqGenerator.setKey(ToolSign.getKey(timestamp, appid, secret, username, password));
+    reqGenerator.setKey(ToolSign.getKey(timestamp, appid, secret, username, userKey));
     reqGenerator.setSign(ToolSign.getSign(reqGenerator));
     return reqGenerator;
   }

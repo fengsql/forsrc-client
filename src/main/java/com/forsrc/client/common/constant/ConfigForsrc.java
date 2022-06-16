@@ -27,7 +27,7 @@ public class ConfigForsrc {
       public static String appid;
       public static String secret;
       public static String username;
-      public static String password;
+      public static String userkey;
     }
 
     public static class server {
@@ -74,6 +74,7 @@ public class ConfigForsrc {
         public static String databaseType;
         public static String web;
         public static String branch;
+        public static String appKey;
         public static String version;
       }
 
@@ -147,9 +148,9 @@ public class ConfigForsrc {
     forsrc.authorization.username = Tool.toString(value);
   }
 
-  @Value("${forsrc.authorization.password:}")
-  public void setForsrc_authorization_password(String value) {
-    forsrc.authorization.password = Tool.toString(value);
+  @Value("${forsrc.authorization.userkey:}")
+  public void setForsrc_authorization_userkey(String value) {
+    forsrc.authorization.userkey = Tool.toString(value);
   }
 
   //forsrc-server
@@ -286,6 +287,11 @@ public class ConfigForsrc {
   @Value("${forsrc.generator.application.branch:base}")
   public void setForsrc_generator_application_branch(String value) {
     forsrc.generator.application.branch = Tool.toString(value);
+  }
+
+  @Value("${forsrc.generator.application.app-key:default}")
+  public void setForsrc_generator_application_appKey(String value) {
+    forsrc.generator.application.appKey = Tool.toString(value);
   }
 
   @Value("${forsrc.generator.application.version:1.0}")

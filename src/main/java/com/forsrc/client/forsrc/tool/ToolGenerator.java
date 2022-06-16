@@ -143,8 +143,6 @@ public class ToolGenerator {
     checkOption();
     checkProject();
     checkOutput();
-    Assert.notNull(ConfigForsrc.forsrc.generator.application.branch, "配置项 'forsrc.generator.application.branch' 没有指定.");
-    Assert.notNull(ConfigForsrc.forsrc.generator.application.version, "配置项 'forsrc.generator.application.version' 没有指定.");
   }
 
   // >>>----------------------- checkGenerator -----------------------
@@ -153,43 +151,19 @@ public class ToolGenerator {
 
   private static void checkApplication() {
     checkLanguage();
-    checkType();
-    checkFramework();
     checkDatabaseType();
-    checkWeb();
+    checkApp();
   }
 
-  // checkLanguage
   private static void checkLanguage() {
     String value = ConfigForsrc.forsrc.generator.application.language;
     Assert.notNull(value, "配置项 'forsrc.generator.application.language' 没有指定.");
-//    Enum.LanguageType languageType = Enum.LanguageType.get(value);
-//    if (languageType == null) {
-//      throw new CommonException(Code.PARAM_INVALID.getCode(), "语言类型无效. 配置项 'forsrc.generator.application.language': " + value);
-//    }
+    //    Enum.LanguageType languageType = Enum.LanguageType.get(value);
+    //    if (languageType == null) {
+    //      throw new CommonException(Code.PARAM_INVALID.getCode(), "语言类型无效. 配置项 'forsrc.generator.application.language': " + value);
+    //    }
   }
 
-  //checkType
-  private static void checkType() {
-    String type = ConfigForsrc.forsrc.generator.application.type;
-    Assert.notNull(type, "配置项 'forsrc.generator.application.type' 没有指定.");
-//    Enum.ApplicationType applicationType = Enum.ApplicationType.get(type);
-//    if (applicationType == null) {
-//      throw new CommonException(Code.PARAM_INVALID.getCode(), "应用类型无效. 配置项 'forsrc.generator.application.type': " + type);
-//    }
-  }
-
-  //checkFramework
-  private static void checkFramework() {
-    String framework = ConfigForsrc.forsrc.generator.application.framework;
-    Assert.notNull(framework, "配置项 'forsrc.generator.application.framework' 没有指定.");
-//    Enum.FrameworkType frameworkType = Enum.FrameworkType.get(framework);
-//    if (frameworkType == null) {
-//      throw new CommonException(Code.PARAM_INVALID.getCode(), "框架类型无效. 配置项 'forsrc.generator.application.framework': " + framework);
-//    }
-  }
-
-  // checkDatabaseType
   private static void checkDatabaseType() {
     String value = ConfigForsrc.forsrc.generator.application.databaseType;
     Assert.notNull(value, "配置项 'forsrc.generator.application.database-type' 没有指定.");
@@ -199,13 +173,59 @@ public class ToolGenerator {
     }
   }
 
-  // checkWeb
+  // >>>----------------------- checkApplication -----------------------
+
+  // <<<----------------------- checkApp -----------------------
+
+  private static void checkApp() {
+    if (!assignAppKey()) {
+      checkType();
+      checkFramework();
+      checkWeb();
+      checkBranch();
+    }
+    checkVersion();
+  }
+
+  private static boolean assignAppKey() {
+    String appKey = ConfigForsrc.forsrc.generator.application.appKey;
+    return !Tool.isNull(appKey);
+  }
+
+  private static void checkType() {
+    String type = ConfigForsrc.forsrc.generator.application.type;
+    Assert.notNull(type, "配置项 'forsrc.generator.application.type' 没有指定.");
+    //    Enum.ApplicationType applicationType = Enum.ApplicationType.get(type);
+    //    if (applicationType == null) {
+    //      throw new CommonException(Code.PARAM_INVALID.getCode(), "应用类型无效. 配置项 'forsrc.generator.application.type': " + type);
+    //    }
+  }
+
+  private static void checkFramework() {
+    String framework = ConfigForsrc.forsrc.generator.application.framework;
+    Assert.notNull(framework, "配置项 'forsrc.generator.application.framework' 没有指定.");
+    //    Enum.FrameworkType frameworkType = Enum.FrameworkType.get(framework);
+    //    if (frameworkType == null) {
+    //      throw new CommonException(Code.PARAM_INVALID.getCode(), "框架类型无效. 配置项 'forsrc.generator.application.framework': " + framework);
+    //    }
+  }
+
   private static void checkWeb() {
     String value = ConfigForsrc.forsrc.generator.application.web;
     Assert.notNull(value, "配置项 'forsrc.generator.application.web' 没有指定.");
   }
 
-  // >>>----------------------- checkApplication -----------------------
+  private static void checkBranch() {
+    String value = ConfigForsrc.forsrc.generator.application.branch;
+    Assert.notNull(value, "配置项 'forsrc.generator.application.branch' 没有指定.");
+  }
+
+  private static void checkVersion() {
+    String value = ConfigForsrc.forsrc.generator.application.version;
+    Assert.notNull(value, "配置项 'forsrc.generator.application.version' 没有指定.");
+  }
+
+  // >>>----------------------- checkApp -----------------------
 
   // <<<----------------------- checkOption -----------------------
 
@@ -327,15 +347,15 @@ public class ToolGenerator {
     String appid = ConfigForsrc.forsrc.authorization.appid;
     String secret = ConfigForsrc.forsrc.authorization.secret;
     String username = ConfigForsrc.forsrc.authorization.username;
-    String password = ConfigForsrc.forsrc.authorization.password;
+    String userkey = ConfigForsrc.forsrc.authorization.userkey;
     if (!Tool.isNull(appid)) {
       if (Tool.isNull(secret)) {
         throw new CommonException(Code.PARAM_INVALID.getCode(), "没有指定 secret. 配置项 'forsrc.authorization.secret'.");
       }
     } else {
       if (!Tool.isNull(username)) {
-        if (Tool.isNull(password)) {
-          throw new CommonException(Code.PARAM_INVALID.getCode(), "没有指定 password. 配置项 'forsrc.authorization.password'.");
+        if (Tool.isNull(userkey)) {
+          throw new CommonException(Code.PARAM_INVALID.getCode(), "没有指定 userkey. 配置项 'forsrc.authorization.userkey'.");
         }
       }
     }
