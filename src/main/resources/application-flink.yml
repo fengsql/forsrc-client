@@ -28,14 +28,10 @@ log:
 forsrc:
   # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
   authorization:
-    # 如果是企业，配置 appid，如果 appid 为空，使用 username 验证
-    appid: 1234
-    # appid 对应的秘钥，如果 appid 不为空，秘钥不能为空
-    secret: abcd
-    # 用户名，如果 appid 不为空，忽略此配置
-    username: feng
-    # 密码，如果 username 不为空，密码不能为空，如果 appid 不为空，忽略此配置
-    password: 12345
+    # 用户名
+    username: forsrc
+    # 秘钥，不是密码，注册后会自动生成秘钥
+    secret: forsrc
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
@@ -77,13 +73,12 @@ forsrc:
     # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     from-file: true
     application:
-      language: java  # 开发语言。目前仅支持java。可选：java,python,c,c++,c#,scala,go,javascript,typescript,php,objectivec,kotlin.
-      type: bigdata
-      framework: flink  # 应用框架
-      database-type: hbase  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
-      web: ''  # web端模式
-      branch: base  # 分支，不同分支功能不同
+      app-key: 'java:bigdata:flink:base'
       version: 1.0  # 分支版本，0 最新版本
+    database:
+      type: hbase  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
+      sql-version: 1.0
+      sql-comment: true  # sql 语句是否添加注释，true添加。
     filter:
       table:
         # 指定仅生成以表头部开头的表，!开头表示不以这个开头的，与其它条件为 and 关系，不能设置多个。

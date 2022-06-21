@@ -9,6 +9,7 @@ spring:
   application:
     name: ${application.name}
   profiles:
+#    include: fava-core
 #    include: dpi
 #    include: store
 #    include: flink
@@ -18,6 +19,7 @@ spring:
 #    include: aimp
 #    include: callnvd
 #    include: rtdg
+#    include: hwqk
 
 ##    active: prd
   boot:
@@ -148,7 +150,7 @@ forsrc:
 #    host: localhost
     host: 10.193.244.110
 #    port: 80
-    port: 8101
+    port: 6100
 #    port: 5510
     path:
       generator: forsrc/generator
