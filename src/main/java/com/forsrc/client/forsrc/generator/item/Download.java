@@ -88,6 +88,7 @@ public class Download extends BForsrc {
     reqDownload.setCode(resultGenerator.getCodeSrc());
     byte[] bytes = downloadFile(reqDownload);
     if (bytes == null) {
+      log.warn("download src fail!");
       return;
     }
     unzip(Enum.GeneratorItemType.src_, bytes, saveSrcPath);
@@ -98,6 +99,7 @@ public class Download extends BForsrc {
     reqDownload.setCode(resultGenerator.getCodeWeb());
     byte[] bytes = downloadFile(reqDownload);
     if (bytes == null) {
+      log.warn("download web fail!");
       return;
     }
     unzip(Enum.GeneratorItemType.web_, bytes, saveWebPath);
@@ -108,6 +110,7 @@ public class Download extends BForsrc {
     reqDownload.setCode(resultGenerator.getCodeSql());
     byte[] bytes = downloadFile(reqDownload);
     if (bytes == null) {
+      log.warn("download sql fail!");
       return;
     }
     unzip(Enum.GeneratorItemType.sql_, bytes, saveSqlPath);

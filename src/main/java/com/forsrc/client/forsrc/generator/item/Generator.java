@@ -32,14 +32,12 @@ public class Generator extends BForsrc {
   private static final String database = ConfigForsrc.forsrc.datasource.database;
   private static final boolean fromFile = ConfigForsrc.forsrc.generator.fromFile;
 
-  private static final String language = ConfigForsrc.forsrc.generator.application.language;
-  private static final String type = ConfigForsrc.forsrc.generator.application.type;
-  private static final String framework = ConfigForsrc.forsrc.generator.application.framework;
-  private static final String databaseType = ConfigForsrc.forsrc.generator.application.databaseType;
-  private static final String web = ConfigForsrc.forsrc.generator.application.web;
-  private static final String branch = ConfigForsrc.forsrc.generator.application.branch;
   private static final String appKey = ConfigForsrc.forsrc.generator.application.appKey;
   private static final String version = ConfigForsrc.forsrc.generator.application.version;
+
+  private static final String databaseType = ConfigForsrc.forsrc.generator.database.type;
+  private static final String sqlVersion = ConfigForsrc.forsrc.generator.database.sqlVersion;
+  private static final boolean sqlComment = ConfigForsrc.forsrc.generator.database.sqlComment;
 
   private static final String projectName = ConfigForsrc.forsrc.generator.project.name;
   private static final String projectTitle = ConfigForsrc.forsrc.generator.project.title;
@@ -49,13 +47,11 @@ public class Generator extends BForsrc {
   private static final boolean generatorWeb = ConfigForsrc.forsrc.generator.output.generatorWeb;
   private static final boolean generatorSql = ConfigForsrc.forsrc.generator.output.generatorSql;
   //
-  private static final String appid = ConfigForsrc.forsrc.authorization.appid;
-  private static final String secret = ConfigForsrc.forsrc.authorization.secret;
   private static final String username = ConfigForsrc.forsrc.authorization.username;
-  private static final String userKey = ConfigForsrc.forsrc.authorization.userkey;
+  private static final String secret = ConfigForsrc.forsrc.authorization.secret;
   //
   private static final boolean ridTablePrefix = ConfigForsrc.forsrc.generator.option.database.ridTablePrefix;
-  private static int selectFieldNum = ConfigForsrc.forsrc.generator.option.database.selectFieldNum;
+  private static final int selectFieldNum = ConfigForsrc.forsrc.generator.option.database.selectFieldNum;
 
   private static String url = null;
 
@@ -80,8 +76,8 @@ public class Generator extends BForsrc {
   // <<<----------------------- generator -----------------------
 
   private ResultGenerator generator(String data) {
-    log.info("generator start. type: {}. framework: {}. srcPack: {}. generatorSrc: {}. generatorWeb: {}. generatorSql: {}.", //
-      type, framework, srcPack, generatorSrc, generatorWeb, generatorSql);
+    log.info("generator start. appKey: {}. version: {}. databaseType: {}. sqlVersion: {}. srcPack: {}. generatorSrc: {}. generatorWeb: {}. generatorSql: {}.", //
+      appKey, version, databaseType, sqlVersion, srcPack, generatorSrc, generatorWeb, generatorSql);
     long start = System.currentTimeMillis();
 
     String json = sendGenerator(data);
@@ -89,7 +85,7 @@ public class Generator extends BForsrc {
 
     long end = System.currentTimeMillis();
     int ms = (int) (end - start);
-    String cost = getCost(ms);
+    String total = getCost(ms);
 
     //    log.info("generator result: {}", getGeneratorResult(resultGenerator));
     if (resultGenerator == null || !resultGenerator.isSuccess()) {
@@ -97,6 +93,7 @@ public class Generator extends BForsrc {
       log.warn("generator fail! msg: {}", msg);
       return null;
     } else {
+      String cost = getCost(resultGenerator.getCost());
       log.info("<<----------------------------------------------------------");
       log.info("generator success. cost {}", cost);
       log.info(">>----------------------------------------------------------");
@@ -151,14 +148,12 @@ public class Generator extends BForsrc {
     reqGenerator.setDatabase(database);
     reqGenerator.setFromFile(fromFile);
 
-    reqGenerator.setLanguage(language);
-    reqGenerator.setApplication(type);
-    reqGenerator.setFramework(framework);
-    reqGenerator.setDatabaseType(databaseType);
-    reqGenerator.setWeb(web);
-    reqGenerator.setBranch(branch);
     reqGenerator.setAppKey(appKey);
     reqGenerator.setVersion(version);
+
+    reqGenerator.setDatabaseType(databaseType);
+    reqGenerator.setSqlVersion(sqlVersion);
+    reqGenerator.setSqlComment(sqlComment);
 
     reqGenerator.setProjectName(projectName);
     reqGenerator.setProjectTitle(projectTitle);
@@ -170,10 +165,9 @@ public class Generator extends BForsrc {
     reqGenerator.setData(data);
     //
     reqGenerator.setTimestamp(timestamp);
-    reqGenerator.setAppid(appid);
     reqGenerator.setUsername(username);
     //
-    reqGenerator.setKey(ToolSign.getKey(timestamp, appid, secret, username, userKey));
+    reqGenerator.setKey(ToolSign.getKey(username, secret, timestamp));
     reqGenerator.setSign(ToolSign.getSign(reqGenerator));
     return reqGenerator;
   }
@@ -187,7 +181,7 @@ public class Generator extends BForsrc {
       return null;
     }
     RepGenerator repGenerator = ToolJson.toBean(json, RepGenerator.class);
-    if (!Tool.isSuccess(repGenerator)) {
+    if (!isSuccess(repGenerator)) {
       return getResultGenerator(repGenerator);
     }
     return repGenerator.getData();
@@ -198,6 +192,10 @@ public class Generator extends BForsrc {
     resultGenerator.setSuccess(resultGenerator.isSuccess());
     resultGenerator.setMsg(repGenerator.getMessage());
     return resultGenerator;
+  }
+
+  private boolean isSuccess(RepGenerator repGenerator) {
+    return repGenerator != null && repGenerator.getSuccess() != null && repGenerator.getSuccess();
   }
 
   // >>>----------------------- getResultGenerator -----------------------
@@ -242,13 +240,13 @@ public class Generator extends BForsrc {
 
   // <<<----------------------- tool -----------------------
 
-  private String getCost(int ms) {
+  private String getCost(long ms) {
     String cost;
     if (ms < 1000) {
       cost = ms + " ms.";
     } else {
-      int second = ms / 1000;
-      int tail = ms % 1000;
+      long second = ms / 1000;
+      long tail = ms % 1000;
       cost = second + " s " + tail + " ms.";
     }
     return cost;

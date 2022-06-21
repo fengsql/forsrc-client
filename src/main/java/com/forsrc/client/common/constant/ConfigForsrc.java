@@ -24,10 +24,8 @@ public class ConfigForsrc {
   public static class forsrc {
 
     public static class authorization {
-      public static String appid;
-      public static String secret;
       public static String username;
-      public static String userkey;
+      public static String secret;
     }
 
     public static class server {
@@ -68,14 +66,14 @@ public class ConfigForsrc {
       public static boolean fromFile;
 
       public static class application {
-        public static String language;
-        public static String type;
-        public static String framework;
-        public static String databaseType;
-        public static String web;
-        public static String branch;
         public static String appKey;
         public static String version;
+      }
+      
+      public static class database {
+        public static String type;
+        public static String sqlVersion;
+        public static boolean sqlComment;
       }
 
       public static class filter {
@@ -126,31 +124,19 @@ public class ConfigForsrc {
     for (String filePath: filePaths) {
       filePath = Tool.replace(filePath, "/", File.separator);
       filePath = Tool.replace(filePath, "\\", File.separator);
-//      filePath = Tool.replace(filePath, ".", File.separator);
-//      filePath = Tool.replace(filePath, ":", ".");
       protectedFilePath.add(filePath);
     }
   }
 
   //forsrc-authorization
-  @Value("${forsrc.authorization.appid:}")
-  public void setForsrc_authorization_appid(String value) {
-    forsrc.authorization.appid = Tool.toString(value);
-  }
-
-  @Value("${forsrc.authorization.secret:}")
-  public void setForsrc_authorization_secret(String value) {
-    forsrc.authorization.secret = Tool.toString(value);
-  }
-
   @Value("${forsrc.authorization.username:}")
   public void setForsrc_authorization_username(String value) {
     forsrc.authorization.username = Tool.toString(value);
   }
 
-  @Value("${forsrc.authorization.userkey:}")
-  public void setForsrc_authorization_userkey(String value) {
-    forsrc.authorization.userkey = Tool.toString(value);
+  @Value("${forsrc.authorization.secret:}")
+  public void setForsrc_authorization_secret(String value) {
+    forsrc.authorization.secret = Tool.toString(value);
   }
 
   //forsrc-server
@@ -259,37 +245,7 @@ public class ConfigForsrc {
   }
 
   //forsrc-generator-application
-  @Value("${forsrc.generator.application.language:java}")
-  public void setForsrc_generator_application_language(String value) {
-    forsrc.generator.application.language = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.type:springboot}")
-  public void setForsrc_generator_application_type(String value) {
-    forsrc.generator.application.type = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.framework:spring}")
-  public void setForsrc_generator_application_framework(String value) {
-    forsrc.generator.application.framework = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.database-type:mysql}")
-  public void setForsrc_generator_application_databaseType(String value) {
-    forsrc.generator.application.databaseType = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.web:vue}")
-  public void setForsrc_generator_application_web(String value) {
-    forsrc.generator.application.web = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.branch:base}")
-  public void setForsrc_generator_application_branch(String value) {
-    forsrc.generator.application.branch = Tool.toString(value);
-  }
-
-  @Value("${forsrc.generator.application.app-key:default}")
+  @Value("${forsrc.generator.application.app-key:}")
   public void setForsrc_generator_application_appKey(String value) {
     forsrc.generator.application.appKey = Tool.toString(value);
   }
@@ -297,6 +253,22 @@ public class ConfigForsrc {
   @Value("${forsrc.generator.application.version:1.0}")
   public void setForsrc_generator_application_version(String value) {
     forsrc.generator.application.version = Tool.toString(value);
+  }
+
+  //forsrc-generator-sql
+  @Value("${forsrc.generator.database.type:}")
+  public void setForsrc_generator_database_type(String value) {
+    forsrc.generator.database.type = Tool.toString(value);
+  }
+
+  @Value("${forsrc.generator.database.sql-version:}")
+  public void setForsrc_generator_database_sqlVersion(String value) {
+    forsrc.generator.database.sqlVersion = Tool.toString(value);
+  }
+
+  @Value("${forsrc.generator.database.sql-comment:false}")
+  public void setForsrc_generator_database_sqlComment(String value) {
+    forsrc.generator.database.sqlComment = Tool.toBoolean(value);
   }
 
   //forsrc-generator-filter
@@ -348,11 +320,6 @@ public class ConfigForsrc {
   }
 
   //forsrc-generator-output
-//  @Value("${forsrc.generator.output.rewrite-on-exist:false}")
-//  public void setForsrc_generator_output_rewriteOnExist(String value) {
-//    forsrc.generator.output.rewriteOnExist = Tool.toBoolean(value);
-//  }
-
   @Value("${forsrc.generator.output.generator-src:true}")
   public void setForsrc_generator_output_generatorSrc(String value) {
     forsrc.generator.output.generatorSrc = Tool.toBoolean(value);
