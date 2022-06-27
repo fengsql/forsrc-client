@@ -8,6 +8,7 @@ import com.forsrc.common.tool.ToolJson;
 import com.forsrc.data.common.bean.*;
 import com.forsrc.data.common.tool.ToolSign;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -181,6 +182,7 @@ public class Generator extends BForsrc {
       return null;
     }
     RepGenerator repGenerator = ToolJson.toBean(json, RepGenerator.class);
+    setResult(repGenerator);
     if (!isSuccess(repGenerator)) {
       return getResultGenerator(repGenerator);
     }
@@ -196,6 +198,18 @@ public class Generator extends BForsrc {
 
   private boolean isSuccess(RepGenerator repGenerator) {
     return repGenerator != null && repGenerator.getSuccess() != null && repGenerator.getSuccess();
+  }
+
+  private void setResult(RepGenerator repGenerator) {
+    if (repGenerator.getSuccess() != null) {
+      return;
+    }
+    Integer code = repGenerator.getCode();
+    if (code != null && code == HttpStatus.SC_OK) {
+      repGenerator.setSuccess(true);
+    } else {
+      repGenerator.setSuccess(false);
+    }
   }
 
   // >>>----------------------- getResultGenerator -----------------------

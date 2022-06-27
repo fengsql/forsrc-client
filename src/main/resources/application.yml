@@ -148,7 +148,7 @@ forsrc:
   server:
 #    host: https://www.forsrc.com
 #    host: localhost
-    host: 10.193.244.110
+    host: 10.21.0.15
 #    port: 80
     port: 6100
 #    port: 5510

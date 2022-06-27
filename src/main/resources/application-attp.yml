@@ -82,7 +82,7 @@ forsrc:
         # 指定表名包含什么内容，仅字母、数字或下划线，与其它条件为 and 关系，不能设置多个。
         name-contain: ''
         # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
-        table-regex: ""
+        table-regex: ''
         # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系。
         tables: ''
     #      tables: 'schemata, tables, columns, table_constraints, statistics'
