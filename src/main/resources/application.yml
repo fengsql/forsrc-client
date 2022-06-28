@@ -53,10 +53,10 @@ spring:
         min-idle: 0
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    jdbc-url: jdbc:mysql://${forsrc.datasource.host}:${forsrc.datasource.port}/information_schema?serverTimezone=PRC&autoReconnect=true&characterEncoding=utf8&useUnicode=true&useSSL=false
+    url: jdbc:mysql://${forsrc.datasource.host}:${forsrc.datasource.port}/information_schema?serverTimezone=PRC&autoReconnect=true&characterEncoding=utf8&useUnicode=true&useSSL=false
     username: ${forsrc.datasource.username}
     password: ${forsrc.datasource.password}
-#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.cj.jdbc.Driver
     driver: com.mysql.jdbc.Driver
     druid:
       initial-size: 5
@@ -76,6 +76,7 @@ spring:
           slow-sql-millis: 2000
     mybatis:
       mapper-locations: classpath*:mybatis/**/*.xml
+#      config-location: classpath*:mybatis/**/*.xml
   liquibase:
     enabled: false
   thymeleaf:
@@ -148,7 +149,7 @@ forsrc:
   server:
 #    host: https://www.forsrc.com
 #    host: localhost
-    host: 10.21.0.15
+    host: 10.21.0.70
 #    port: 80
     port: 6100
 #    port: 5510

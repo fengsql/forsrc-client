@@ -59,11 +59,11 @@ forsrc:
   datasource:
     # 数据库类型，目前仅支持 mysql
     type: mysql
-    host: 124.70.204.115
-    port: 3999
-    database: dpi_gp
+    host: 10.21.0.15
+    port: 5533
+    database: forsrc
     username: 'dbuser'
-    password: 'G4f#I&Kg^6Hc'
+    password: 'dpG!0U3g#6Hz'
   generator:
     # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     from-file: true
