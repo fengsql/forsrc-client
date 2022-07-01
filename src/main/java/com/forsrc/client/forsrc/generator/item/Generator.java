@@ -2,6 +2,8 @@ package com.forsrc.client.forsrc.generator.item;
 
 import com.forsrc.client.common.constant.ConfigForsrc;
 import com.forsrc.client.forsrc.generator.base.BForsrc;
+import com.forsrc.common.cipher.tool.ToolBase64;
+import com.forsrc.common.cipher.tool.ToolCipher;
 import com.forsrc.common.configure.okhttp.BeanOkHttp;
 import com.forsrc.common.tool.Tool;
 import com.forsrc.common.tool.ToolJson;
@@ -38,7 +40,6 @@ public class Generator extends BForsrc {
 
   private static final String databaseType = ConfigForsrc.forsrc.generator.database.type;
   private static final String sqlVersion = ConfigForsrc.forsrc.generator.database.sqlVersion;
-  private static final boolean sqlComment = ConfigForsrc.forsrc.generator.database.sqlComment;
 
   private static final String projectName = ConfigForsrc.forsrc.generator.project.name;
   private static final String projectTitle = ConfigForsrc.forsrc.generator.project.title;
@@ -52,6 +53,8 @@ public class Generator extends BForsrc {
   private static final String secret = ConfigForsrc.forsrc.authorization.secret;
   //
   private static final boolean ridTablePrefix = ConfigForsrc.forsrc.generator.option.database.ridTablePrefix;
+  private static final boolean sqlAddComment = ConfigForsrc.forsrc.generator.option.database.sqlAddComment;
+  private static final boolean sqlAddCommentInfo = ConfigForsrc.forsrc.generator.option.database.sqlAddCommentInfo;
   private static final int selectFieldNum = ConfigForsrc.forsrc.generator.option.database.selectFieldNum;
 
   private static String url = null;
@@ -119,8 +122,26 @@ public class Generator extends BForsrc {
   }
 
   private String getSendParam(String data) {
+    byte[] password = getPassword();
+    data = encode(data, password);
     ReqGenerator reqGenerator = getReqGenerator(data);
     return ToolJson.toJson(reqGenerator);
+  }
+
+  private String encode(String data, byte[] password) {
+    long start = System.currentTimeMillis();
+    byte[] source = Tool.toBytes(data);
+    byte[] target = ToolCipher.encryptAes(source, password);
+    String result = ToolBase64.encode(target);
+    long end = System.currentTimeMillis();
+    int ms = (int) (end - start);
+    String total = getCost(ms);
+    log.info("encode ok. cost: {}. sourceLength: {}. targetLength: {}", total, data.length(), result.length());
+    return result;
+  }
+
+  private byte[] getPassword() {
+    return ToolCipher.md5(secret.getBytes());
   }
 
   private ReqGenerator getReqGenerator(String data) {
@@ -138,6 +159,8 @@ public class Generator extends BForsrc {
   private void setOptionDatabase(GeneratorOption generatorOption) {
     OptionDatabase optionDatabase = new OptionDatabase();
     optionDatabase.setRidTablePrefix(ridTablePrefix);
+    optionDatabase.setSqlAddComment(sqlAddComment);
+    optionDatabase.setSqlAddCommentInfo(sqlAddCommentInfo);
     optionDatabase.setSelectFieldNum(selectFieldNum);
     generatorOption.setOptionDatabase(optionDatabase);
   }
@@ -154,7 +177,6 @@ public class Generator extends BForsrc {
 
     reqGenerator.setDatabaseType(databaseType);
     reqGenerator.setSqlVersion(sqlVersion);
-    reqGenerator.setSqlComment(sqlComment);
 
     reqGenerator.setProjectName(projectName);
     reqGenerator.setProjectTitle(projectTitle);
@@ -257,11 +279,11 @@ public class Generator extends BForsrc {
   private String getCost(long ms) {
     String cost;
     if (ms < 1000) {
-      cost = ms + " ms.";
+      cost = ms + " ms";
     } else {
       long second = ms / 1000;
       long tail = ms % 1000;
-      cost = second + " s " + tail + " ms.";
+      cost = second + " s " + tail + " ms";
     }
     return cost;
   }

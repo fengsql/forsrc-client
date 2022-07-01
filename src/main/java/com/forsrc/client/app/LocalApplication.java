@@ -36,7 +36,6 @@ public class LocalApplication {
         protocol = "https";
       }
 
-
       log.info("\n----------------------------------------------------------\n\t" +
           "Application '{}' is running! Access URLs:\n\t" +
           "Local: \t\t{}://localhost:{}\n\t" +

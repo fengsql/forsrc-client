@@ -73,7 +73,6 @@ public class ConfigForsrc {
       public static class database {
         public static String type;
         public static String sqlVersion;
-        public static boolean sqlComment;
       }
 
       public static class filter {
@@ -88,6 +87,8 @@ public class ConfigForsrc {
       public static class option {
         public static class database {
           public static boolean ridTablePrefix;
+          public static boolean sqlAddComment;
+          public static boolean sqlAddCommentInfo;
           public static int selectFieldNum;
         }
       }
@@ -266,11 +267,6 @@ public class ConfigForsrc {
     forsrc.generator.database.sqlVersion = Tool.toString(value);
   }
 
-  @Value("${forsrc.generator.database.sql-comment:false}")
-  public void setForsrc_generator_database_sqlComment(String value) {
-    forsrc.generator.database.sqlComment = Tool.toBoolean(value);
-  }
-
   //forsrc-generator-filter
   @Value("${forsrc.generator.filter.table.name-prefix}")
   public void setForsrc_generator_filter_table_name_prefix(String value) {
@@ -296,6 +292,16 @@ public class ConfigForsrc {
   @Value("${forsrc.generator.option.database.rid-table-prefix:false}")
   public void setForsrc_generator_option_database_ridTablePrefix(String value) {
     forsrc.generator.option.database.ridTablePrefix = Tool.toBoolean(value);
+  }
+
+  @Value("${forsrc.generator.option.database.sql-add-comment:false}")
+  public void setForsrc_generator_option_database_sqlAddComment(String value) {
+    forsrc.generator.option.database.sqlAddComment = Tool.toBoolean(value);
+  }
+
+  @Value("${forsrc.generator.option.database.sql-add-comment-info:false}")
+  public void setForsrc_generator_option_database_sqlAddCommentInfo(String value) {
+    forsrc.generator.option.database.sqlAddCommentInfo = Tool.toBoolean(value);
   }
 
   @Value("${forsrc.generator.option.database.select-field-num:10}")
