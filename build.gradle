@@ -58,10 +58,10 @@ dependencies {
 //    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
     compile 'redis.clients:jedis:3.5.2'
 
-    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.20'
+    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.2.11'
     compile group: 'com.alibaba', name: 'fastjson', version: '1.2.60'
-    compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
     compile group: 'com.alibaba', name: 'easyexcel', version: '2.0.5'
+    compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
     compile group: 'io.micrometer', name: 'micrometer-registry-prometheus', version: '1.6.5'
     compile group: 'io.prometheus', name: 'simpleclient_spring_boot', version: '0.8.0'
     compile 'com.google.guava:guava:28.1-jre'
