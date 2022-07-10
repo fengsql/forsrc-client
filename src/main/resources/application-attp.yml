@@ -92,7 +92,7 @@ forsrc:
         # sql 语句是否添加注释，true添加。
         sql-add-comment: true
         # sql 语句的字段注释中，是否添加文档的说明部分，默认为 false 不添加。当为 true 时，sql 的字段注释中将包含配置信息
-        sql-add-comment-info: true
+        sql-add-comment-info: false
         # 缺省关系查询显示字段总个数，默认10，可以在主键或外键字段中配置，0自动计算，-1全部不显示。
         # 在主键字段中配置，可以设置当前表显示的总共字段数（包含外键表中的字段）。在外键字段中配置可以设置当前外键表中显示的字段数。
         select-field-num: 20

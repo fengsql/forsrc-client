@@ -15,6 +15,8 @@ import java.util.Set;
 @Configuration
 public class ConfigForsrc {
 
+  public static final String VERSION = "1.0";
+
   @Resource
   private ConfigProtected configProtected;
 

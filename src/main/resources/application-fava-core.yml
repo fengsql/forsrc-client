@@ -67,7 +67,7 @@ forsrc:
     username: 'dbuser'
     password: 'dpG!0U3g#6Hz'
   generator:
-    # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
+    # 是否从文档生成，true 从文档生成，false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     from-file: true
     application:
 #      language: java  # 开发语言。目前仅支持java。可选：java,python,c,c++,c#,scala,go,javascript,typescript,php,objectivec,kotlin.

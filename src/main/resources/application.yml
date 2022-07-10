@@ -9,11 +9,12 @@ spring:
   application:
     name: ${application.name}
   profiles:
-    include: fava-core
+#    include: fava-core
+#    include: forsrc-data
 #    include: dpi
 #    include: store
 #    include: flink
-#    include: attp
+    include: attp
 #    include: attp-algo
 #    include: attp-store
 #    include: aimp
@@ -152,8 +153,8 @@ token:
 forsrc:
   server:
 #    host: https://www.forsrc.com
-    host: localhost
-#    host: 10.21.0.70
+#    host: localhost
+    host: 47.101.163.238
 #    port: 80
     port: 6100
 #    port: 5510

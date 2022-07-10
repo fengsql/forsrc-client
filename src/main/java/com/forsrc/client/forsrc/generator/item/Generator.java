@@ -98,9 +98,11 @@ public class Generator extends BForsrc {
       return null;
     } else {
       String cost = getCost(resultGenerator.getCost());
-      log.info("<<----------------------------------------------------------");
-      log.info("generator success. cost {}", cost);
-      log.info(">>----------------------------------------------------------");
+      log.info("---------------------------------------------------------------------------");
+      log.info("                                                                           ");
+      log.info("                     generator success. cost {}.", cost);
+      log.info("                                                                           ");
+      log.info("---------------------------------------------------------------------------");
       return resultGenerator;
     }
   }
@@ -136,7 +138,7 @@ public class Generator extends BForsrc {
     long end = System.currentTimeMillis();
     int ms = (int) (end - start);
     String total = getCost(ms);
-    log.info("encode ok. cost: {}. sourceLength: {}. targetLength: {}", total, data.length(), result.length());
+//    log.info("encode ok. cost: {}. sourceLength: {}. targetLength: {}", total, data.length(), result.length());
     return result;
   }
 
