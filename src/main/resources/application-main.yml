@@ -1,29 +1,13 @@
 #
 application:
   port: 8010
-  name: client
+  name: 'forsrc-client'
 
 log:
   level:
     root: info
     dao: debug
-  file: /home/dpi/log/dpi.log
-
-#websocket:
-#  enable: true
-#  message-timeout: 30
-#  login-timeout: 30
-
-#redis:
-#  cluster-hosts: '47.103.65.29:6379:Ji3$k&6&q5!L'
-#  max-total: 200
-#  max-idle: 100
-#  min-idle: 0
-#  test-borrow: false
-#  test-return: false
-#  # second
-#  ttl: 1800
-#  key-head: core-
+  file: log/app.log
 
 forsrc:
   # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
@@ -35,14 +19,9 @@ forsrc:
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
-#    doc-file: 'E:/prog/java/feng/doc/db/core数据库设计2020年5月1日.docx'
-#    doc-file: 'E:/prog/java/2020/dpi/doc/db/dpi数据库设计2020年5月1日.docx'
-#    doc-file: 'E:/prog/java/2020/dpi/doc/db/dpi数据库设计2020年7月1日 - 演示.docx'
-#     dpi
-    doc-file: 'E:/prog/java/2020/dpi/doc/db/DPI通信数据库表设计20210403.docx'
     # aatp
-#    doc-file: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/db/cvat数据库设计2021年03月18日1.docx'
-#    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
+    doc-file: ${project.filesource.doc-file}
+    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
     table-has-header: false
     # 设置是否检查关键字，设置为true将检查数据库关键字，java关键字和内部关键字不管是否设置都会检查。如果不检查生成的源码有可能出现错误。
     check-reserve-word: false
@@ -64,70 +43,58 @@ forsrc:
   datasource:
     # 数据库类型，目前仅支持 mysql
     type: mysql
-    host: 124.70.204.115
-    port: 3999
-    database: dpi_gp
-    username: 'dbuser'
-    password: 'G4f#I&Kg^6Hc'
+    host: ${project.datasource.host}
+    port: ${project.datasource.port}
+    database: ${project.datasource.database}
+    username: ${project.datasource.username}
+    password: ${project.datasource.password}
   generator:
     # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
-    from-file: true
+    from-file: ${project.generator.from-file}
     application:
-      app-key: 'java:springboot:webapp:vue:base'
-      version: 1.0  # 分支版本，0 最新版本
+      app-key: ${project.generator.application.app-key}
+      version: ${project.generator.application.version}  # 分支版本，0 最新版本
     database:
-      type: mysql  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
-      sql-version: 1.0
-      sql-comment: true  # sql 语句是否添加注释，true添加。
+      type: ${project.generator.database.type}  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
+      sql-version: ${project.generator.database.sql-version}
     filter:
       table:
         # 指定仅生成以表头部开头的表，!开头表示不以这个开头的，与其它条件为 and 关系，不能设置多个。
-        #      name-prefix: 't_'
-        name-prefix: ''
+        name-prefix: ${project.generator.filter.table.name-prefix}
         # 指定表名包含什么内容，仅字母、数字或下划线，与其它条件为 and 关系，不能设置多个。
-        name-contain: ''
+        name-contain: ${project.generator.filter.table.name-contain}
         # 正则表达式指定表名，可以指定多个表达式，逗号分隔，与其它条件为 and 关系。
-        table-regex: ""
-        # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系
-        tables: ''
-    #      tables: 'schemata, tables, columns, table_constraints, statistics, key_column_usage'
+        table-regex: ${project.generator.filter.table.table-regex}
+        # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系。
+        tables: ${project.generator.filter.table.tables}
     option:
       database:
-        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false
-        rid-table-prefix: true
-        # 缺省查询显示字段总个数，默认10，可以在外键字段中配置selectFieldNum来设置外键表中显示出的字段数，0自动计算，-1全部不显示
-        # 此值目前在服务器端设置，客户端设置无效
+        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
+        rid-table-prefix: false
+        # sql 语句是否添加注释，true添加。
+        sql-add-comment: true
+        # sql 语句的字段注释中，是否添加文档的说明部分，默认为 false 不添加。当为 true 时，sql 的字段注释中将包含配置信息
+        sql-add-comment-info: false
+        # 缺省关系查询显示字段总个数，默认10，可以在主键或外键字段中配置，0自动计算，-1全部不显示。
+        # 在主键字段中配置，可以设置当前表显示的总共字段数（包含外键表中的字段）。在外键字段中配置可以设置当前外键表中显示的字段数。
         select-field-num: 20
     project:
-      name: 'aatp'   # 项目名称
-      title: 'Amygo标注管理平台' # 项目标题
-      # 包的名称，所有生成的程序都在这个包下面
-      src-pack: 'com.project.amygo.aatp2d'
+      name: ${project.generator.project.name}  # 项目名称
+      title: ${project.generator.project.title}  # 项目标题
+      src-pack: ${project.generator.project.src-pack}  # 包的名称，所有生成的程序都在这个包下面
     output:
-      # 如果存在时是否覆盖，true覆盖，false不覆盖
-      rewrite-on-exist: true
       # 是否生成 src 部分
-      generator-src: true
+      generator-src: ${project.generator.output.generator-src}
       # 是否生成 web 部分
-      generator-web: true
+      generator-web: ${project.generator.output.generator-web}
       # 是否生成 sql 语句
-      generator-sql: true
-      # 是否生成 extend 部分
-      generator-extend: true
+      generator-sql: ${project.generator.output.generator-sql}
       # src 的保存路径
-      #      save-src-path: 'E:/prog/java/feng/prog/fava/forsrc/source/src'
-      #      save-src-path: 'E:/prog/java/2020/dpi/site/source/src'
-      # dpi
-      save-src-path: 'E:/prog/java/2020/dpi/server/source/src'
-      #      save-src-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/prog/java/src'
+      save-src-path: ${project.generator.output.save-src-path}
       # web 的保存路径
-      #      save-web-path: 'E:/prog/java/feng/prog/fava/forsrc/web/vue/src'
-      save-web-path: 'E:/prog/java/2020/dpi/vue/src'
-      #      save-web-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/prog/js/vue/src'
+      save-web-path: ${project.generator.output.save-web-path}
       # sql 的保存路径
-      save-sql-path: 'E:/prog/java/feng/doc/db/sql'
-      #      save-sql-path: 'E:/prog/java/2021/amigo/datalab/aatp/aatp-2d/doc/sql'
-      #      save-sql-path: 'E:/prog/java/2021/amigo/doc/sql/aat'
-      # extend 的保存路径
-      #      save-extend-path: 'E:/prog/java/feng/prog/fava/forsrc/extend'
-      save-extend-path: 'E:/prog/java/2020/dpi/extend'
+      save-sql-path: ${project.generator.output.save-sql-path}
+      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
+      protected-file-path: ${project.generator.output.protected-file-path}
+      

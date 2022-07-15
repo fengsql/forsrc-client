@@ -9,20 +9,22 @@ spring:
   application:
     name: ${application.name}
   profiles:
-#    include: fava-core
-#    include: forsrc-data
-#    include: dpi
-#    include: store
-#    include: flink
-    include: attp
-#    include: attp-algo
-#    include: attp-store
-#    include: aimp
-#    include: callnvd
-#    include: rtdg
-#    include: hwqk
+    include: main
+    #
+#    active: fava-core
+#    active: forsrc-data
+#    active: dpi
+#    active: store
+#    active: flink
+    active: attp
+#    active: attp-algo
+#    active: attp-store
+#    active: aimp
+#    active: callnvd
+#    active: rtdg
+#    active: hwqk
 
-##    active: prd
+#    active: prd
   boot:
     admin:
       client:
