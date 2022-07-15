@@ -1,31 +1,5 @@
 #
-application:
-  port: 8010
-  name: client
-
-log:
-  level:
-    root: info
-    dao: debug
-  file: /home/dpi/log/dpi.log
-
-#websocket:
-#  enable: true
-#  message-timeout: 30
-#  login-timeout: 30
-
-#redis:
-#  cluster-hosts: '47.103.65.29:6379:Ji3$k&6&q5!L'
-#  max-total: 200
-#  max-idle: 100
-#  min-idle: 0
-#  test-borrow: false
-#  test-return: false
-#  # second
-#  ttl: 1800
-#  key-head: core-
-
-forsrc:
+project:
   # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
   authorization:
     # 用户名

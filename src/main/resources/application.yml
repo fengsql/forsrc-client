@@ -1,9 +1,10 @@
 server:
   port: ${application.port}
   tomcat:
-    max-threads: 500
     accept-count: 500
-    min-spare-threads: 200
+    threads:
+      max: 500
+      min-spare: 200
 
 spring:
   application:
