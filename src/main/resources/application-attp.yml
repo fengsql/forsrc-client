@@ -2,11 +2,10 @@
 project:
   filesource:  # 文件源配置，如果 generator.from-file 为 false，忽略此配置
     # 指定设计文档的路径，目前仅支持 docx 格式
-    # aatp
     doc-file: 'E:\prog\java\2021\amygo\project\aatp\doc\db\数据库设计-20211213.docx'
   datasource:  # 数据库配置，如果 generator.from-file 为 true，忽略此配置，目前仅支持 mysql
-    host: 10.21.0.15
-    port: 5533
+    host: 10.21.0.10
+    port: 5531
     database: forsrc
     username: 'dbuser'
     password: 'dpG!0U3g#6Hz'
@@ -35,7 +34,7 @@ project:
       title: 'Amygo标注管理平台' # 项目标题
       # 包的名称，所有生成的程序都在这个包下面
       src-pack: 'com.project.amygo.aatp.site'
-    output:
+    output:  #&project-generator-output
       # 是否生成 src 部分
       generator-src: true
       # 是否生成 web 部分
@@ -50,10 +49,10 @@ project:
       save-sql-path: 'E:\prog\java\2021\amygo\project\aatp\doc\db\sql'
       # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
       protected-file-path:
-        - '${forsrc.generator.output.save-src-path}\main\resources\application*'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\constant\EnumCode.java'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\exception'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\response'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\event'
+        - '${project.generator.output.save-src-path}\main\resources\application*'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\constant\EnumCode.java'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\exception'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\response'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\security\service'
+        - '${project.generator.output.save-src-path}\main\java\com\project\amygo\aatp\site\mvc\event'

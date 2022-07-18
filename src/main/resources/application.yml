@@ -17,13 +17,14 @@ spring:
 #    active: dpi
 #    active: store
 #    active: flink
-    active: attp
+    active: aatp
 #    active: attp-algo
 #    active: attp-store
 #    active: aimp
 #    active: callnvd
 #    active: rtdg
 #    active: hwqk
+#    active: example
 
 #    active: prd
   boot:
@@ -35,26 +36,6 @@ spring:
           prefer-ip: true
   main:
     allow-bean-definition-overriding: true
-  redis:
-    host: localhost
-    port: 6379
-    password: 123456
-    database: 0
-    timeout: 5000
-    # 过期时间，second
-    ttl: 3600
-    # 刷新时间，second，获取缓存后判断，当缓存过期时间小于或等于这个时间时刷新过期时间
-    refresh: 3500
-    lettuce:
-      pool:
-        # 最大活跃链接数 默认8ew
-        max-active: 8
-        # 最大等待时间ms 默认-1无限等待
-        max-wait: 1000
-        # 最大空闲连接数 默认8
-        max-idle: 8
-        # 最小空闲连接数 默认0
-        min-idle: 0
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://${forsrc.datasource.host}:${forsrc.datasource.port}/information_schema?serverTimezone=PRC&autoReconnect=true&characterEncoding=utf8&useUnicode=true&useSSL=false
@@ -78,9 +59,6 @@ spring:
         stat:
           log-slow-sql: true
           slow-sql-millis: 2000
-#    mybatis:
-#      mapper-locations: classpath*:mybatis/**/*.xml
-#      config-location: classpath*:mybatis/**/*.xml
   liquibase:
     enabled: false
   thymeleaf:
@@ -158,9 +136,7 @@ forsrc:
 #    host: https://www.forsrc.com
 #    host: localhost
     host: 47.101.163.238
-#    port: 80
     port: 6100
-#    port: 5510
     path:
       generator: forsrc/generator
       download: forsrc/download

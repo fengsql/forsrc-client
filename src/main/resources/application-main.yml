@@ -10,7 +10,7 @@ log:
   file: log/app.log
 
 forsrc:
-  # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
+  # 授权部分，配置账号 username 和 secret
   authorization:
     # 用户名
     username: forsrc
@@ -19,7 +19,6 @@ forsrc:
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
-    # aatp
     doc-file: ${project.filesource.doc-file}
     # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
     table-has-header: false
@@ -70,7 +69,7 @@ forsrc:
     option:
       database:
         # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
-        rid-table-prefix: false
+        rid-table-prefix: true
         # sql 语句是否添加注释，true添加。
         sql-add-comment: true
         # sql 语句的字段注释中，是否添加文档的说明部分，默认为 false 不添加。当为 true 时，sql 的字段注释中将包含配置信息
@@ -83,6 +82,7 @@ forsrc:
       title: ${project.generator.project.title}  # 项目标题
       src-pack: ${project.generator.project.src-pack}  # 包的名称，所有生成的程序都在这个包下面
     output:
+#      <<: *project-generator-output
       # 是否生成 src 部分
       generator-src: ${project.generator.output.generator-src}
       # 是否生成 web 部分
@@ -95,6 +95,3 @@ forsrc:
       save-web-path: ${project.generator.output.save-web-path}
       # sql 的保存路径
       save-sql-path: ${project.generator.output.save-sql-path}
-      # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
-      protected-file-path: ${project.generator.output.protected-file-path}
-      

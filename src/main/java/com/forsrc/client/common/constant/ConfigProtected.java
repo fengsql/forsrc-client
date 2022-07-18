@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties(prefix = "forsrc.generator.output")
+@ConfigurationProperties(prefix = "project.generator.output")
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
 @Data
 public class ConfigProtected {

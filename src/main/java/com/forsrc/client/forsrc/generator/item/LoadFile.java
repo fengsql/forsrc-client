@@ -9,7 +9,7 @@ import com.forsrc.common.tool.ToolJson;
 import com.forsrc.data.common.exception.LocalException;
 import com.forsrc.data.common.param.ParamDocument;
 import com.forsrc.data.document.bean.DocTable;
-import com.forsrc.data.document.load.LoadDocument;
+import com.forsrc.data.document.load.item.LoadDocument;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

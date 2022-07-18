@@ -43,11 +43,11 @@ public class LocalApplication {
       String msg = "\n";
       msg += "===================================================================================================\n";
       msg += "                                      -- Forsrc Client " + version + " --\n";
-      msg += "    Application start ok.\n";
-      msg += "    App:     " + appName + "\n";
-      msg += "    Profile: " + profile + "\n";
-      msg += "    Url:     " + protocol + "://" + host + ":" + port + "\n";
-      msg += "===================================================================================================";
+      msg += "    App: " + appName + "\n";
+      msg += "    Yml: " + profile + "\n";
+      msg += "    Url: " + protocol + "://" + host + ":" + port + "\n";
+      msg += "===================================================================================================\n";
+      msg += "Application start ok.\n";
       log.info(msg);
     } catch (Exception ignored) {
     } finally {
