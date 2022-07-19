@@ -4,7 +4,7 @@ import com.forsrc.client.common.constant.ConfigForsrc;
 import com.forsrc.client.forsrc.generator.base.BForsrc;
 import com.forsrc.common.configure.okhttp.BeanOkHttp;
 import com.forsrc.common.constant.Code;
-import com.forsrc.common.constant.Enum;
+import com.forsrc.data.common.constant.Enum;
 import com.forsrc.common.exception.CommonException;
 import com.forsrc.common.tool.Tool;
 import com.forsrc.common.tool.ToolFile;
@@ -88,10 +88,10 @@ public class Download extends BForsrc {
     reqDownload.setCode(resultGenerator.getCodeApp());
     byte[] bytes = downloadFile(reqDownload);
     if (bytes == null) {
-      log.warn("download src fail!");
+      log.warn("download app fail!");
       return;
     }
-    unzip(Enum.GeneratorItemType.src_, bytes, saveAppPath);
+    unzip(Enum.GeneratorItemType.app_, bytes, saveAppPath);
   }
 
   private void downloadWeb(ResultGenerator resultGenerator) {

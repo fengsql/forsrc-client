@@ -3,7 +3,7 @@ package com.forsrc.client.forsrc.tool;
 import com.forsrc.client.common.constant.ConfigForsrc;
 import com.forsrc.common.cipher.tool.ToolBase64;
 import com.forsrc.common.constant.Code;
-import com.forsrc.common.constant.Enum;
+import com.forsrc.data.common.constant.Enum;
 import com.forsrc.common.exception.CommonException;
 import com.forsrc.common.tool.Tool;
 import com.forsrc.common.tool.ToolFile;
