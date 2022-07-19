@@ -38,7 +38,7 @@ public class Download extends BForsrc {
 
   private static final String path_temp = System.getProperty("java.io.tmpdir");
 
-  private static final String saveSrcPath = ConfigForsrc.forsrc.generator.output.saveSrcPath;
+  private static final String saveAppPath = ConfigForsrc.forsrc.generator.output.saveAppPath;
   private static final String saveWebPath = ConfigForsrc.forsrc.generator.output.saveWebPath;
   private static final String saveSqlPath = ConfigForsrc.forsrc.generator.output.saveSqlPath;
 
@@ -72,8 +72,8 @@ public class Download extends BForsrc {
   // <<<----------------------- download -----------------------
 
   private void download(ResultGenerator resultGenerator) {
-    if (resultGenerator.getCodeSrc() != null) {
-      downloadSrc(resultGenerator);
+    if (resultGenerator.getCodeApp() != null) {
+      downloadApp(resultGenerator);
     }
     if (resultGenerator.getCodeWeb() != null) {
       downloadWeb(resultGenerator);
@@ -83,15 +83,15 @@ public class Download extends BForsrc {
     }
   }
 
-  private void downloadSrc(ResultGenerator resultGenerator) {
+  private void downloadApp(ResultGenerator resultGenerator) {
     ReqDownload reqDownload = createReqDownload(resultGenerator);
-    reqDownload.setCode(resultGenerator.getCodeSrc());
+    reqDownload.setCode(resultGenerator.getCodeApp());
     byte[] bytes = downloadFile(reqDownload);
     if (bytes == null) {
       log.warn("download src fail!");
       return;
     }
-    unzip(Enum.GeneratorItemType.src_, bytes, saveSrcPath);
+    unzip(Enum.GeneratorItemType.src_, bytes, saveAppPath);
   }
 
   private void downloadWeb(ResultGenerator resultGenerator) {

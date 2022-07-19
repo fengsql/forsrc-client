@@ -43,9 +43,9 @@ public class Generator extends BForsrc {
 
   private static final String projectName = ConfigForsrc.forsrc.generator.project.name;
   private static final String projectTitle = ConfigForsrc.forsrc.generator.project.title;
-  private static final String srcPack = ConfigForsrc.forsrc.generator.project.srcPack;
+  private static final String appPack = ConfigForsrc.forsrc.generator.project.appPack;
 
-  private static final boolean generatorSrc = ConfigForsrc.forsrc.generator.output.generatorSrc;
+  private static final boolean generatorApp = ConfigForsrc.forsrc.generator.output.generatorApp;
   private static final boolean generatorWeb = ConfigForsrc.forsrc.generator.output.generatorWeb;
   private static final boolean generatorSql = ConfigForsrc.forsrc.generator.output.generatorSql;
   //
@@ -80,8 +80,8 @@ public class Generator extends BForsrc {
   // <<<----------------------- generator -----------------------
 
   private ResultGenerator generator(String data) {
-    log.info("generator start. appKey: {}. version: {}. databaseType: {}. sqlVersion: {}. srcPack: {}. generatorSrc: {}. generatorWeb: {}. generatorSql: {}.", //
-      appKey, version, databaseType, sqlVersion, srcPack, generatorSrc, generatorWeb, generatorSql);
+    log.info("generator start. appKey: {}. version: {}. databaseType: {}. sqlVersion: {}. appPack: {}. generatorApp: {}. generatorWeb: {}. generatorSql: {}.", //
+      appKey, version, databaseType, sqlVersion, appPack, generatorApp, generatorWeb, generatorSql);
     long start = System.currentTimeMillis();
 
     String json = sendGenerator(data);
@@ -183,9 +183,9 @@ public class Generator extends BForsrc {
 
     reqGenerator.setProjectName(projectName);
     reqGenerator.setProjectTitle(projectTitle);
-    reqGenerator.setSrcPack(srcPack);
+    reqGenerator.setAppPack(appPack);
 
-    reqGenerator.setGeneratorSrc(generatorSrc);
+    reqGenerator.setGeneratorApp(generatorApp);
     reqGenerator.setGeneratorWeb(generatorWeb);
     reqGenerator.setGeneratorSql(generatorSql);
     reqGenerator.setData(data);

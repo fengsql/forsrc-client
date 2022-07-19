@@ -98,15 +98,15 @@ public class ConfigForsrc {
       public static class project {
         public static String name;
         public static String title;
-        public static String srcPack;
+        public static String appPack;
       }
 
       public static class output {
 //        public static boolean rewriteOnExist;
-        public static boolean generatorSrc;
+        public static boolean generatorApp;
         public static boolean generatorWeb;
         public static boolean generatorSql;
-        public static String saveSrcPath;
+        public static String saveAppPath;
         public static String saveWebPath;
         public static String saveSqlPath;
       }
@@ -322,15 +322,15 @@ public class ConfigForsrc {
     forsrc.generator.project.title = Tool.toString(value);
   }
 
-  @Value("${forsrc.generator.project.src-pack}")
-  public void setForsrc_generator_project_srcPack(String value) {
-    forsrc.generator.project.srcPack = Tool.toString(value);
+  @Value("${forsrc.generator.project.app-pack}")
+  public void setForsrc_generator_project_appPack(String value) {
+    forsrc.generator.project.appPack = Tool.toString(value);
   }
 
   //forsrc-generator-output
-  @Value("${forsrc.generator.output.generator-src:true}")
-  public void setForsrc_generator_output_generatorSrc(String value) {
-    forsrc.generator.output.generatorSrc = Tool.toBoolean(value);
+  @Value("${forsrc.generator.output.generator-app:true}")
+  public void setForsrc_generator_output_generatorApp(String value) {
+    forsrc.generator.output.generatorApp = Tool.toBoolean(value);
   }
 
   @Value("${forsrc.generator.output.generator-web:false}")
@@ -343,9 +343,9 @@ public class ConfigForsrc {
     forsrc.generator.output.generatorSql = Tool.toBoolean(value);
   }
 
-  @Value("${forsrc.generator.output.save-src-path}")
-  public void setForsrc_generator_output_saveSrcPath(String value) {
-    forsrc.generator.output.saveSrcPath = Tool.toString(value);
+  @Value("${forsrc.generator.output.save-app-path}")
+  public void setForsrc_generator_output_saveAppPath(String value) {
+    forsrc.generator.output.saveAppPath = Tool.toString(value);
   }
 
   @Value("${forsrc.generator.output.save-web-path}")

@@ -69,7 +69,7 @@ forsrc:
     option:
       database:
         # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
-        rid-table-prefix: true
+        rid-table-prefix: ${project.generator.option.database.rid-table-prefix}
         # sql 语句是否添加注释，true添加。
         sql-add-comment: true
         # sql 语句的字段注释中，是否添加文档的说明部分，默认为 false 不添加。当为 true 时，sql 的字段注释中将包含配置信息
@@ -80,17 +80,16 @@ forsrc:
     project:
       name: ${project.generator.project.name}  # 项目名称
       title: ${project.generator.project.title}  # 项目标题
-      src-pack: ${project.generator.project.src-pack}  # 包的名称，所有生成的程序都在这个包下面
+      app-pack: ${project.generator.project.app-pack}  # app 包的名称，生成 app 的源程序都在这个包下面
     output:
-#      <<: *project-generator-output
-      # 是否生成 src 部分
-      generator-src: ${project.generator.output.generator-src}
+      # 是否生成 app 部分
+      generator-app: ${project.generator.output.generator-app}
       # 是否生成 web 部分
       generator-web: ${project.generator.output.generator-web}
       # 是否生成 sql 语句
       generator-sql: ${project.generator.output.generator-sql}
-      # src 的保存路径
-      save-src-path: ${project.generator.output.save-src-path}
+      # app 的保存路径
+      save-app-path: ${project.generator.output.save-app-path}
       # web 的保存路径
       save-web-path: ${project.generator.output.save-web-path}
       # sql 的保存路径

@@ -209,21 +209,21 @@ public class ToolGenerator {
     Assert.notNull(projectName, "配置项 'forsrc.generator.project.name' 没有指定.");
     String projectTitle = ConfigForsrc.forsrc.generator.project.title;
     Assert.notNull(projectTitle, "配置项 'forsrc.generator.project.title' 没有指定.");
-    checkSrcPack();
+    checkAppPack();
   }
 
-  private static void checkSrcPack() {
-    String srcPack = ConfigForsrc.forsrc.generator.project.srcPack;
-    Assert.notNull(srcPack, "配置项 'forsrc.generator.project.src-pack' 没有指定.");
-    String[] packs = Tool.split(srcPack, sep_pack);
+  private static void checkAppPack() {
+    String appPack = ConfigForsrc.forsrc.generator.project.appPack;
+    Assert.notNull(appPack, "配置项 'forsrc.generator.project.app-pack' 没有指定.");
+    String[] packs = Tool.split(appPack, sep_pack);
     for (String pack : packs) {
       if (!ToolData.isParamName(pack)) {
-        throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.project.src-pack' 中的包名称 '" + pack + "' 无效.");
+        throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.project.app-pack' 中的包名称 '" + pack + "' 无效.");
       }
     }
-    srcPack = Tool.toLower(srcPack);
-    if (srcPack.equals(pack_forbid) || srcPack.startsWith(pack_forbid + sep_pack)) {
-      throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.project.src-pack' 指定的包名不能以 '" + pack_forbid + "' 开头.");
+    appPack = Tool.toLower(appPack);
+    if (appPack.equals(pack_forbid) || appPack.startsWith(pack_forbid + sep_pack)) {
+      throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.project.app-pack' 指定的包名不能以 '" + pack_forbid + "' 开头.");
     }
   }
 
@@ -232,20 +232,20 @@ public class ToolGenerator {
   // <<<----------------------- checkOutput -----------------------
 
   private static void checkOutput() {
-    checkOutputSaveSrcPath();
+    checkOutputSaveAppPath();
     checkOutputSaveWebPath();
     checkOutputSaveSqlPath();
     checkEnableGenerator();
   }
 
-  private static void checkOutputSaveSrcPath() {
-    if (!ConfigForsrc.forsrc.generator.output.generatorSrc) {
+  private static void checkOutputSaveAppPath() {
+    if (!ConfigForsrc.forsrc.generator.output.generatorApp) {
       return;
     }
-    String saveSrcPath = ConfigForsrc.forsrc.generator.output.saveSrcPath;
-    Assert.notNull(saveSrcPath, "配置项 'forsrc.generator.output.save-src-path' 没有指定.");
-    if (!ToolFile.existPath(saveSrcPath)) {
-      throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.output.save-src-path' 指定的路径不存在.");
+    String saveAppPath = ConfigForsrc.forsrc.generator.output.saveAppPath;
+    Assert.notNull(saveAppPath, "配置项 'forsrc.generator.output.save-app-path' 没有指定.");
+    if (!ToolFile.existPath(saveAppPath)) {
+      throw new CommonException(Code.PARAM_INVALID.getCode(), "配置项 'forsrc.generator.output.save-app-path' 指定的路径不存在.");
     }
   }
 
@@ -267,7 +267,7 @@ public class ToolGenerator {
   }
 
   private static void checkEnableGenerator() {
-    if (ConfigForsrc.forsrc.generator.output.generatorSrc) {
+    if (ConfigForsrc.forsrc.generator.output.generatorApp) {
       return;
     }
     if (ConfigForsrc.forsrc.generator.output.generatorWeb) {

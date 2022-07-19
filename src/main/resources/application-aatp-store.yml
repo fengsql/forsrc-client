@@ -71,12 +71,10 @@ project:
       name: 'aatp'   # 项目名称
       title: 'Amygo标注管理平台' # 项目标题
       # 包的名称，所有生成的程序都在这个包下面
-      src-pack: 'com.project.amygo.aatp.algo'
+      app-pack: 'com.project.amygo.aatp.algo'
     output:
-      # 如果存在时是否覆盖，true覆盖，false不覆盖
-      rewrite-on-exist: true
-      # 是否生成 src 部分
-      generator-src: true
+      # 是否生成 app 部分
+      generator-app: true
       # 是否生成 web 部分
       generator-web: false
       # 是否生成 sql 语句

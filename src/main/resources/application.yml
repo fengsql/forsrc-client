@@ -18,12 +18,13 @@ spring:
 #    active: store
 #    active: flink
     active: aatp
-#    active: attp-algo
-#    active: attp-store
+#    active: aatp-algo
+#    active: aatp-store
 #    active: aimp
 #    active: callnvd
 #    active: rtdg
 #    active: hwqk
+#    active: wldp
 #    active: example
 
 #    active: prd

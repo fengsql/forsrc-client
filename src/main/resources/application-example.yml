@@ -4,11 +4,11 @@ project:
     # 指定设计文档的路径，目前仅支持 docx 格式
     doc-file: 'E:\example\helloworld\doc\db\数据库设计-演示.docx'
   datasource:  # 数据库配置，如果 generator.from-file 为 true，忽略此配置，目前仅支持 mysql
-    host: 47.101.163.238
-    port: 3999
-    database: forsrc
-    username: 'dbuser'
-    password: 'G4f#I&Kg^6Hc'
+    host: localhost
+    port: 3306
+    database: mydb
+    username: 'root'
+    password: 'root'
   generator:
     from-file: true  # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     application:
@@ -28,19 +28,23 @@ project:
         table-regex: ''
         # 指定哪些表，多个表用英文逗号分隔，空或*为全部，与其它条件为 and 关系。
         tables: ''
+    option:
+      database:
+        # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
+        rid-table-prefix: false
     project:
       name: 'example'  # 项目名称
       title: 'springboot 样例'  # 项目标题
-      src-pack: 'com.example'  # 包的名称，所有生成的程序都在这个包下面
+      app-pack: 'com.example'  # app 包的名称，生成 app 的源程序都在这个包下面
     output:
-      # 是否生成 src 部分
-      generator-src: true
+      # 是否生成 app 部分
+      generator-app: true
       # 是否生成 web 部分
       generator-web: true
       # 是否生成 sql 语句
       generator-sql: true
-      # src 的保存路径
-      save-src-path: 'E:\example\helloworld\source\app\src'
+      # app 的保存路径
+      save-app-path: 'E:\example\helloworld\source\app\src'
       # web 的保存路径
       save-web-path: 'E:\example\helloworld\source\web\src'
       # sql 的保存路径
