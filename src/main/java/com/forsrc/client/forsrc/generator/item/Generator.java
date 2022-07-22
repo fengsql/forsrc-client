@@ -10,7 +10,6 @@ import com.forsrc.common.tool.ToolJson;
 import com.forsrc.data.common.bean.*;
 import com.forsrc.data.common.tool.ToolSign;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -230,7 +229,7 @@ public class Generator extends BForsrc {
       return;
     }
     Integer code = repGenerator.getCode();
-    if (code != null && code == HttpStatus.SC_OK) {
+    if (code != null && code == 200) {
       repGenerator.setSuccess(true);
     } else {
       repGenerator.setSuccess(false);
