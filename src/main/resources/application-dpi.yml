@@ -109,8 +109,8 @@ forsrc:
       generator-web: false
       # 是否生成 sql 语句
       generator-sql: true
-      # src 的保存路径
-      save-src-path: 'E:/prog/java/2020/dpi/server/source/src'
+      # app 的保存路径
+      save-app-path: 'E:/prog/java/2020/dpi/server/source/src'
       # web 的保存路径
       save-web-path: 'E:/prog/java/2020/dpi/vue/src'
       # sql 的保存路径

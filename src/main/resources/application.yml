@@ -12,7 +12,10 @@ spring:
   profiles:
     include: main
     #
-    active: example
+#    active: example
+#    active: aatp
+    active: aatp-algo
+#    active: aatp-store
 
   boot:
     admin:
@@ -121,8 +124,8 @@ forsrc:
   server:
 #    host: https://www.forsrc.com
 #    host: localhost
-    host: gen.forsrc.com
-    port: 6100
+    host: https://gen.forsrc.com
+#    port: 6100
     path:
       generator: forsrc/generator
       download: forsrc/download

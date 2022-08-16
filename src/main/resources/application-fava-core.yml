@@ -115,18 +115,18 @@ forsrc:
       generator-web: true
       # 是否生成 sql 语句
       generator-sql: true
-      # src 的保存路径
-      save-src-path: 'E:\prog\java\feng\prog\fava\core\source\src'
+      # app 的保存路径
+      save-app-path: 'E:\prog\java\feng\prog\fava\core\source\src'
       # web 的保存路径
       save-web-path: 'E:\prog\java\feng\prog\fava\core\web\vue\src'
       # sql 的保存路径
       save-sql-path: 'E:\prog\java\feng\doc\db\sql'
       # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。
       protected-file-path:
-        - '${forsrc.generator.output.save-src-path}\main\resources\application*'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\app'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\common\constant\EnumCode.java'
-        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\security\service'
-#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\common\response'
-#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\common\spring\base'
-#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\local\mvc\event'
+        - '${forsrc.generator.output.save-app-path}\main\resources\application*'
+        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\app'
+        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\common\constant\EnumCode.java'
+        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\security\service'
+#        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\common\response'
+#        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\common\spring\base'
+#        - '${forsrc.generator.output.save-app-path}\main\java\com\project\local\mvc\event'

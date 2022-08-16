@@ -110,7 +110,7 @@ forsrc:
       generator-sql: true
       # src 的保存路径
       # aatp
-      save-src-path: 'E:/prog/java/2021/amigo/development/aimp/prog/java/src'
+      save-app-path: 'E:/prog/java/2021/amigo/development/aimp/prog/java/src'
       # web 的保存路径
       save-web-path: 'E:/prog/java/2021/amigo/development/aimp/prog/js/vue/src'
       # sql 的保存路径
