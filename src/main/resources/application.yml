@@ -14,8 +14,8 @@ spring:
     #
 #    active: example
 #    active: aatp
-    active: aatp-algo
-#    active: aatp-store
+#    active: aatp-algo
+    active: aatp-store
 
   boot:
     admin:

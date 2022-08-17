@@ -56,4 +56,4 @@ project:
         - '${forsrc.generator.output.save-app-path}\main\java\com\project\amygo\aatp\algo\common\constant\EnumCode.java'
         - '${forsrc.generator.output.save-app-path}\main\java\com\project\amygo\aatp\algo\security\service'
         - '${forsrc.generator.output.save-app-path}\main\java\com\project\amygo\aatp\algo\common\spring\base'
-#        - '${forsrc.generator.output.save-src-path}\main\java\com\project\amygo\algo\site\mvc\handle'
+#        - '${forsrc.generator.output.save-app-path}\main\java\com\project\amygo\algo\site\mvc\handle'
