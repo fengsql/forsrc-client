@@ -13,9 +13,9 @@ spring:
     include: main
     #
 #    active: example
-#    active: aatp
+    active: aatp-site
 #    active: aatp-algo
-    active: aatp-store
+#    active: aatp-store
 
   boot:
     admin:
