@@ -2,7 +2,7 @@
 project:
   filesource:  # 文件源配置，如果 generator.from-file 为 false，忽略此配置
     # 指定设计文档的路径，目前仅支持 docx 格式
-    doc-file: 'E:\prog\java\nanjing\develop\project\hwqk\doc\db\数据库文档-20220708.docx'
+    doc-file: 'E:\prog\java\nanjing\develop\project\hwqk\doc\db\数据库文档-20221016.docx'
   datasource:  # 数据库配置，如果 generator.from-file 为 true，忽略此配置
     host: 47.101.163.238
     port: 3999
@@ -13,7 +13,7 @@ project:
     from-file: true  # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     application:
       # 应用程序的 key，forsrc 根据这个 key 区分不同应用程序，可参照官网进行配置
-      app-key: 'java:springboot:webapp:vue:base'
+      app-key: 'java:springboot:webapp:vue:store'
       version: 1.0  # 分支版本，0 最新版本
     database:
       type: mysql  # 生成数据库的类型，目前支持：mysql，postgresql，greenplum
@@ -31,10 +31,10 @@ project:
     option:
       database:
         # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
-        rid-table-prefix: true
+        rid-table-prefix: false
     project:
-      name: 'hwqk'   # 项目名称
-      title: 'hwqk监控平台'  # 项目标题
+      name: 'hwqk-site'   # 项目名称
+      title: '城市安全大脑'  # 项目标题
       # 包的名称，所有生成的程序都在这个包下面
       app-pack: 'com.project.hwqk.site'
     output:
@@ -47,7 +47,7 @@ project:
       # app 的保存路径
       save-app-path: 'E:\prog\java\nanjing\develop\project\hwqk\prog\java\app\source\src'
       # web 的保存路径
-      save-web-path: 'E:\prog\java\nanjing\develop\project\hwqk\prog\web\site\vue\source'
+      save-web-path: 'E:\prog\java\nanjing\develop\project\hwqk\prog\web\site\vue\source\src'
       # sql 的保存路径
       save-sql-path: 'E:\prog\java\nanjing\develop\project\hwqk\doc\db\sql'
       # 保护的文件或路径，绝对路径，区分大小写，支持?和*通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹，不覆盖。

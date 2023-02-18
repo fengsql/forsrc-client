@@ -25,7 +25,7 @@ log:
 #  ttl: 1800
 #  key-head: core-
 
-forsrc:
+project:
   # 授权部分，如果是企业，配置企业 appid 和 secret，如果是个人，配置账号 username 和 password。
   authorization:
     # 用户名
@@ -36,7 +36,7 @@ forsrc:
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
     # rtdg
-    doc-file: 'E:\prog\java\nanjing\develop\project\rtdg\doc\db\数据库文档-20220504.docx'
+    doc-file: 'E:\prog\java\nanjing\develop\project\rtdg\doc\db\数据库文档-20221012.docx'
 #    # 文档中的表是否有标题头(第一行)，true 有标题头(标题头不计入字段，将被忽略)，false 无标题头
     table-has-header: false
     # 设置是否检查关键字，设置为true将检查数据库关键字，java关键字和内部关键字不管是否设置都会检查。如果不检查生成的源码有可能出现错误。
@@ -106,7 +106,7 @@ forsrc:
       # 是否生成 sql 语句
       generator-sql: true
       # src 的保存路径
-      save-src-path: 'E:\prog\java\nanjing\develop\project\rtdg\prog\java\site\source\src'
+      save-app-path: 'E:\prog\java\nanjing\develop\project\rtdg\prog\java\site\source\src'
       # web 的保存路径
       save-web-path: 'E:\prog\java\nanjing\develop\project\rtdg\prog\web\site\vue\source'
       # sql 的保存路径

@@ -4,9 +4,9 @@ project:
     # 指定设计文档的路径，目前仅支持 docx 格式
     doc-file: 'E:\example\helloworld\doc\db\数据库设计-演示.docx'
   datasource:  # 数据库配置，如果 generator.from-file 为 true，忽略此配置，目前仅支持 mysql
-    host: 47.101.163.238
+    host: 47.100.201.117
     port: 3999
-    database: forsrc
+    database: example
     username: 'dbuser'
     password: 'G4f#I&Kg^6Hc'
   generator:
@@ -31,7 +31,7 @@ project:
     option:
       database:
         # 是否去掉表头，true 去掉表头作为tableBody，false 不去掉，默认为 false，如 table_user 表，去掉后类名为 User，不去掉为 TableUser
-        rid-table-prefix: false
+        rid-table-prefix: true
     project:
       name: 'example'  # 项目名称
       title: 'springboot 样例'  # 项目标题
