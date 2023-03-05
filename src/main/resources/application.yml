@@ -77,14 +77,6 @@ spring:
         reset-enable: false
   liquibase:
     enabled: false
-  thymeleaf:
-    cache: false
-    check-template-location: true
-    prefix: classpath:/templates/
-    suffix: .html
-  web:
-    resources:
-      static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 
 mybatis:
   mapper-locations: classpath*:mybatis/**/*.xml
@@ -139,14 +131,6 @@ management:
         enabled: true
     tags:
       application: ${spring.application.name}
-
-feign:
-  hystrix:
-    enabled: true
-
-token:
-  key: L5H^k6U4a&Cf3J!k
-  valid-day: 15
 
 forsrc:
   server:

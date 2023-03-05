@@ -90,7 +90,7 @@ public class Generator extends BForsrc {
     int ms = (int) (end - start);
     String total = getCost(ms);
 
-    //    log.info("generator result: {}", getGeneratorResult(resultGenerator));
+//    log.info("generator result: {}", getGeneratorResult(resultGenerator));
 
     log.info("---------------------------------------------------------------------------");
     log.info("                                                                           ");
