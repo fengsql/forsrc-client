@@ -12,9 +12,9 @@ spring:
   profiles:
     include: main
     #
-#    active: example
+    active: example
 #    active: fava-core
-    active: aatp-site
+#    active: aatp-site
 #    active: aatp-algo
 #    active: aatp-store
 #    active: nvmeop
