@@ -59,3 +59,4 @@ project:
         - '${project.generator.output.save-app-path}\main\java\com\project\amygo\aatp\site\common\spring\base'
         - '${project.generator.output.save-app-path}\main\java\com\project\amygo\aatp\site\security\service'
         - '${project.generator.output.save-app-path}\main\java\com\project\amygo\aatp\site\mvc\event'
+        - '${project.generator.output.save-app-path}\main\java\com\project\amygo\aatp\site\init'

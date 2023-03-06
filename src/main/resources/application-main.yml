@@ -13,9 +13,9 @@ forsrc:
   # 授权部分，配置账号 username 和 secret
   authorization:
     # 用户名
-    username: 'forsrc@126.com'  #'forsrc@126.com'  #forsrc
+    username: 'forsrc'  #'forsrc@126.com'  #forsrc
     # 秘钥，不是密码，注册后会自动生成秘钥
-    secret: 'h0WQVrye8DCBuTxZRBoDjaH1OQ5eCbNf'  #'h0WQVrye8DCBuTxZRBoDjaH1OQ5eCbNf'  #forsrc
+    secret: 'forsrc'  #'h0WQVrye8DCBuTxZRBoDjaH1OQ5eCbNf'  #forsrc
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
