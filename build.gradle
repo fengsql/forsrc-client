@@ -16,16 +16,18 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    //去掉 log4j2 以解决冲突
+    all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
 
 repositories {
+    mavenCentral()
+    maven {
+        url 'https://mvnrepository.com/'
+    }
     maven {
         url 'http://maven.aliyun.com/nexus/content/groups/public'
     }
-    maven{
-        url 'https://mvnrepository.com/'
-    }
-    mavenCentral()
 }
 
 ext {
@@ -66,8 +68,9 @@ dependencies {
     //mysql
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     //forsrc
-    compile files("E:\\prog\\java\\feng\\setup\\lib-forsrc\\forsrc-common-1.0.jar")
-    compile files("E:\\prog\\java\\feng\\setup\\lib-fava\\forsrc-data-1.0.jar")
+//    compile 'io.github.fengsql:forsrc-common:0.0.1'
+//    compile 'io.github.fengsql:forsrc-common:1.0'
+    compile 'io.github.fengsql:forsrc-data:0.0.1'
 
 }
 
