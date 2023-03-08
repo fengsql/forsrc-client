@@ -16,8 +16,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    //去掉 log4j2 以解决冲突
-    all*.exclude group: "org.slf4j", module: "slf4j-log4j12"
 }
 
 repositories {
