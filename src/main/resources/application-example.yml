@@ -4,11 +4,11 @@ project:
     # 指定设计文档的路径，目前仅支持 docx 格式
     doc-file: 'E:\example\helloworld\doc\db\数据库设计-演示.docx'
   datasource:  # 数据库配置，如果 generator.from-file 为 true，忽略此配置，目前仅支持 mysql
-    host: 47.100.201.117
-    port: 3999
+    host: localhost
+    port: 3306
     database: example
-    username: 'dbuser'
-    password: 'G4f#I&Kg^6Hc'
+    username: 'root'
+    password: 'root'
   generator:
     from-file: true  # 是否从文档生成，true从文档生成。false 从数据库生成，如果是从数据库生成，需要配置 datasource 数据源。默认为 false
     application:
