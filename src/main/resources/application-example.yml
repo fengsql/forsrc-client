@@ -52,3 +52,10 @@ project:
       # 保护的文件或路径，绝对路径，区分大小写，支持 ? 和 * 通配符。如果不存在，写入文件或文件夹；如果已经存在，跳过文件或文件夹。
       protected-file-path:
         - '${project.generator.output.save-app-path}\main\resources\application*'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\app'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\common\constant\EnumCode.java'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\security\service'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\business\user'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\common\response'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\common\spring\base'
+#        - '${project.generator.output.save-app-path}\main\java\com\project\local\mvc\event'
