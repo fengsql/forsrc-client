@@ -92,7 +92,7 @@ task myClearLib(type: Delete) {
 // 拷贝lib
 task myCopyLib(type: Copy) {
     from configurations.compileClasspath
-    into "$buildDir\\libs\\lib"
+    into "$buildDir/libs/lib"
 }
 
 bootJar {
