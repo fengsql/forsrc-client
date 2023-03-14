@@ -67,8 +67,9 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     //forsrc
 //    compile 'io.github.fengsql:forsrc-common:1.0'
-    compile 'io.github.fengsql:forsrc-common:1.0.0.03'
-    compile 'io.github.fengsql:forsrc-data:0.0.2'
+    compile 'io.github.fengsql:forsrc-common:1.0.0.04'
+//    compile 'io.github.fengsql:forsrc-data:0.0.2'
+    compile files("E:\\prog\\java\\feng\\prog\\forsrc\\data\\source\\build\\libs\\forsrc-data-1.0.jar")
 
 }
 

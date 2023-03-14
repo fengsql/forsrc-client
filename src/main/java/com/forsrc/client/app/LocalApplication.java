@@ -1,6 +1,6 @@
 package com.forsrc.client.app;
 
-import com.forsrc.client.common.constant.ConfigForsrc;
+import com.forsrc.data.common.constant.ConfigForsrc;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -25,11 +25,8 @@ public class LocalApplication {
 
   public static void main(String[] args) {
     log.info("application start.");
-    ConfigurableApplicationContext applicationContext = null;
     SpringApplication springApplication = new SpringApplication(LocalApplication.class);
-    applicationContext = springApplication.run(args);
-    try {
-      //
+    try (ConfigurableApplicationContext applicationContext = springApplication.run(args)) {
       Environment env = applicationContext.getEnvironment();
       String version = ConfigForsrc.VERSION;
       String appName = env.getProperty("spring.application.name");
@@ -41,17 +38,14 @@ public class LocalApplication {
         protocol = "https";
       }
       String msg = "\n";
-      msg += "===================================================================================================\n";
-      msg += "                                      -- Forsrc Client " + version + " --\n";
-      msg += "    App: " + appName + "\n";
-      msg += "    Yml: " + profile + "\n";
-      msg += "    Url: " + protocol + "://" + host + ":" + port + "\n";
-      msg += "===================================================================================================\n";
-      msg += "Application start ok.\n";
+      msg += "====================================================================================================================\n";
+      msg += "                                                --- Forsrc Client " + version + " ---\n";
+      msg += "    App:     " + appName + "\n";
+      msg += "    Yml:     " + profile + "\n";
+      msg += "    Url:     " + protocol + "://" + host + ":" + port + "\n";
+      msg += "====================================================================================================================";
       log.info(msg);
     } catch (Exception ignored) {
-    } finally {
-      applicationContext.close();
     }
   }
 }
