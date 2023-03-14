@@ -29,23 +29,8 @@ public class Init {
   @Resource
   private Download download;
 
-  // <<----------------------- public -----------------------
-
-  // <<<----------------------- normal -----------------------
   @PostConstruct
-  public void init() {
-    start();
-  }
-
-  // >>>----------------------- normal -----------------------
-
-  // >>----------------------- public -----------------------
-
-  // <<----------------------- private -----------------------
-
-  // <<<----------------------- normal -----------------------
-
-  private void start() {
+  private void init() {
     ToolGenerator.checkConfig();
     String data = loadData();
     ResultGenerator resultGenerator = generator(data);
@@ -65,10 +50,6 @@ public class Init {
     }
     download.work(resultGenerator);
   }
-
-  // >>>----------------------- normal -----------------------
-
-  // <<<----------------------- getData -----------------------
 
   private String loadData() {
     String data = null;
@@ -90,13 +71,5 @@ public class Init {
   private String loadDb() {
     return loadDb.load();
   }
-
-  // >>>----------------------- getData -----------------------
-
-  // <<<----------------------- tool -----------------------
-
-  // >>>----------------------- tool -----------------------
-
-  // >>----------------------- private -----------------------
 
 }
