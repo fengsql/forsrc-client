@@ -37,39 +37,10 @@ ext {
 dependencies {
     annotationProcessor 'org.projectlombok:lombok'
 
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
-
-    implementation 'commons-io:commons-io:2.11.0'
-    implementation 'org.apache.commons:commons-lang3:3.12.0'
-
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'io.projectreactor:reactor-test'
-    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-    testImplementation 'org.springframework.security:spring-security-test'
-    //redis
-    compile 'redis.clients:jedis:3.5.2'
-    //alibaba
-    compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.2.11'
-    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.60'
-    //guava
-    compile 'com.google.guava:guava:28.1-jre'
-    //okhttp
-    compile 'com.squareup.okhttp3:okhttp:3.10.0'
-    // swagger http://localhost:8088/doc.html
-    compile 'com.github.xiaoymin:knife4j-spring-boot-starter:2.0.3'
-    //poi
-    compile group: 'org.apache.poi', name: 'poi', version: '4.1.2'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.1.2'
-    //mysql
-    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.46'
     //forsrc
-//    compile 'io.github.fengsql:forsrc-common:1.0'
     compile 'io.github.fengsql:forsrc-common:1.0.0.04'
-//    compile 'io.github.fengsql:forsrc-data:0.0.2'
-    compile files("E:\\prog\\java\\feng\\prog\\forsrc\\data\\source\\build\\libs\\forsrc-data-1.0.jar")
+    compile 'io.github.fengsql:forsrc-data:0.0.3'
 
 }
 
