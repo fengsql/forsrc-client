@@ -43,7 +43,6 @@ public class Start {
     if (data == null) {
       return null;
     }
-    //    Generator generator = new Generator();
     return generator.work(data);
   }
 
@@ -51,12 +50,11 @@ public class Start {
     if (resultGenerator == null) {
       return;
     }
-    //    Download download = new Download();
     download.work(resultGenerator);
   }
 
   private String loadData() {
-    String data = null;
+    String data;
     if (ToolGenerator.isGeneratorFromFile()) {
       data = loadFile();
     } else {
@@ -69,12 +67,10 @@ public class Start {
   }
 
   private String loadFile() {
-    //    LoadFile loadFile = new LoadFile();
     return loadFile.load();
   }
 
   private String loadDb() {
-    //    LoadDb loadDb = new LoadDb();
     return loadDb.load();
   }
 
