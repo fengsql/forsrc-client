@@ -1,4 +1,4 @@
-package com.forsrc.client.common.response;
+package com.forsrc.client.response;
 
 import com.forsrc.common.spring.base.BResponse;
 import lombok.Data;

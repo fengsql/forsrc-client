@@ -1,4 +1,4 @@
-package com.forsrc.client.common.response;
+package com.forsrc.client.response;
 
 import com.forsrc.common.reponse.IResponseHandler;
 import org.springframework.stereotype.Service;

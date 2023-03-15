@@ -1,36 +1,38 @@
-package com.forsrc.client.common.init;
+package com.forsrc.client.app;
 
 import com.forsrc.common.constant.Code;
 import com.forsrc.common.exception.CommonException;
 import com.forsrc.data.common.bean.ResultGenerator;
+import com.forsrc.data.common.constant.ConfigForsrc;
 import com.forsrc.data.common.tool.ToolGenerator;
 import com.forsrc.data.generator.item.Download;
 import com.forsrc.data.generator.item.Generator;
 import com.forsrc.data.generator.item.LoadDb;
 import com.forsrc.data.generator.item.LoadFile;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 @Service
-@DependsOn({"configForsrc"})
 @Slf4j
-public class Init {
+public class Start {
 
   @Resource
-  private LoadFile loadFile;
-  @Resource
-  private LoadDb loadDb;
+  private ConfigForsrc configForsrc;
   @Resource
   private Generator generator;
   @Resource
   private Download download;
+  @Resource
+  private LoadFile loadFile;
+  @Resource
+  private LoadDb loadDb;
 
   @PostConstruct
-  private void init() {
+  public void init() {
+    log.info("start");
     ToolGenerator.checkConfig();
     String data = loadData();
     ResultGenerator resultGenerator = generator(data);
@@ -41,6 +43,7 @@ public class Init {
     if (data == null) {
       return null;
     }
+    //    Generator generator = new Generator();
     return generator.work(data);
   }
 
@@ -48,6 +51,7 @@ public class Init {
     if (resultGenerator == null) {
       return;
     }
+    //    Download download = new Download();
     download.work(resultGenerator);
   }
 
@@ -65,10 +69,12 @@ public class Init {
   }
 
   private String loadFile() {
+    //    LoadFile loadFile = new LoadFile();
     return loadFile.load();
   }
 
   private String loadDb() {
+    //    LoadDb loadDb = new LoadDb();
     return loadDb.load();
   }
 
