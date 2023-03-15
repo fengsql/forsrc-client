@@ -41,7 +41,7 @@ public class LocalApplication {
       }
       String msg = "\n";
       msg += "====================================================================================================================\n";
-      msg += "                                               --- Forsrc Client " + version + " ---\n";
+      msg += "                                                --- Forsrc Client " + version + " ---\n";
       msg += "    App:     " + appName + "\n";
       msg += "    Yml:     " + profile + "\n";
       msg += "    Url:     " + protocol + "://" + host + ":" + port + "\n";
