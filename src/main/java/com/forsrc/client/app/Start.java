@@ -2,6 +2,7 @@ package com.forsrc.client.app;
 
 import com.forsrc.common.constant.Code;
 import com.forsrc.common.exception.CommonException;
+import com.forsrc.common.tool.ToolBean;
 import com.forsrc.data.common.bean.ResultGenerator;
 import com.forsrc.data.common.constant.ConfigForsrc;
 import com.forsrc.data.common.tool.ToolGenerator;
@@ -21,6 +22,8 @@ public class Start {
 
   @Resource
   private ConfigForsrc configForsrc;
+  @Resource
+  private ToolBean toolBean;
   @Resource
   private Generator generator;
   @Resource
