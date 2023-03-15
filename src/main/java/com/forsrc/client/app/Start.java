@@ -35,25 +35,15 @@ public class Start {
 
   @PostConstruct
   public void init() {
-    log.info("start");
+    log.info("start.");
     ToolGenerator.checkConfig();
+    log.info("checkConfig ok.");
     String data = loadData();
+    log.info("loadData ok.");
     ResultGenerator resultGenerator = generator(data);
+    log.info("generator ok.");
     download(resultGenerator);
-  }
-
-  private ResultGenerator generator(String data) {
-    if (data == null) {
-      return null;
-    }
-    return generator.work(data);
-  }
-
-  private void download(ResultGenerator resultGenerator) {
-    if (resultGenerator == null) {
-      return;
-    }
-    download.work(resultGenerator);
+    log.info("download ok.");
   }
 
   private String loadData() {
@@ -75,6 +65,20 @@ public class Start {
 
   private String loadDb() {
     return loadDb.load();
+  }
+
+  private ResultGenerator generator(String data) {
+    if (data == null) {
+      return null;
+    }
+    return generator.work(data);
+  }
+
+  private void download(ResultGenerator resultGenerator) {
+    if (resultGenerator == null) {
+      return;
+    }
+    download.work(resultGenerator);
   }
 
 }
