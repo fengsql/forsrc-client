@@ -6,10 +6,10 @@ import com.forsrc.common.tool.ToolBean;
 import com.forsrc.data.common.bean.ResultGenerator;
 import com.forsrc.data.common.constant.ConfigForsrc;
 import com.forsrc.data.common.tool.ToolGenerator;
+import com.forsrc.data.document.load.item.LoadDb;
+import com.forsrc.data.document.load.item.LoadFile;
 import com.forsrc.data.generator.item.Download;
 import com.forsrc.data.generator.item.Generator;
-import com.forsrc.data.generator.item.LoadDb;
-import com.forsrc.data.generator.item.LoadFile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -36,12 +36,23 @@ public class Start {
   @PostConstruct
   public void init() {
     log.info("start.");
+    startGenerator();
+  }
+
+  private void startGenerator() {
     ToolGenerator.checkConfig();
     log.info("checkConfig ok.");
     String data = loadData();
     log.info("loadData ok.");
+    
     ResultGenerator resultGenerator = generator(data);
-    log.info("generator ok.");
+    if (resultGenerator == null) {
+      log.warn("generator fail!");
+      return;
+    } else {
+      log.info("generator ok. app: {}. web: {}. sql: {}.",  //
+        resultGenerator.getSuccessApp(), resultGenerator.getSuccessWeb(), resultGenerator.getSuccessSql());
+    }
     download(resultGenerator);
     log.info("download ok.");
   }
