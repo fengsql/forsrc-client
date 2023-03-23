@@ -6,10 +6,10 @@ import com.forsrc.common.tool.ToolBean;
 import com.forsrc.data.common.bean.ResultGenerator;
 import com.forsrc.data.common.constant.ConfigForsrc;
 import com.forsrc.data.common.tool.ToolGenerator;
-import com.forsrc.data.document.load.item.LoadDb;
-import com.forsrc.data.document.load.item.LoadFile;
 import com.forsrc.data.generator.item.Download;
 import com.forsrc.data.generator.item.Generator;
+import com.forsrc.data.load.item.LoadDb;
+import com.forsrc.data.load.item.LoadFile;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
