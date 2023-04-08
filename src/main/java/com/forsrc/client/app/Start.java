@@ -21,9 +21,9 @@ import javax.annotation.Resource;
 public class Start {
 
   @Resource
-  private ConfigForsrc configForsrc;
+  private ConfigForsrc configForsrc;  //不能删除
   @Resource
-  private ToolBean toolBean;
+  private ToolBean toolBean;  //不能删除
   @Resource
   private Generator generator;
   @Resource
@@ -44,15 +44,14 @@ public class Start {
     log.info("checkConfig ok.");
     String data = loadData();
     log.info("loadData ok.");
-    
+
     ResultGenerator resultGenerator = generator(data);
     if (resultGenerator == null) {
       log.warn("generator fail!");
       return;
-    } else {
-      log.info("generator ok. app: {}. web: {}. sql: {}.",  //
-        resultGenerator.getSuccessApp(), resultGenerator.getSuccessWeb(), resultGenerator.getSuccessSql());
     }
+    log.info("generator ok. app: {}. web: {}. sql: {}.",  //
+      resultGenerator.getSuccessApp(), resultGenerator.getSuccessWeb(), resultGenerator.getSuccessSql());
     download(resultGenerator);
     log.info("download ok.");
   }
