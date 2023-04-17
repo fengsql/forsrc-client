@@ -4,7 +4,7 @@ import com.forsrc.common.constant.Code;
 import com.forsrc.common.exception.CommonException;
 import com.forsrc.common.tool.ToolBean;
 import com.forsrc.data.common.bean.ResultGenerator;
-import com.forsrc.data.common.constant.ConfigForsrc;
+import com.forsrc.data.common.constant.ConfigClient;
 import com.forsrc.data.common.tool.ToolGenerator;
 import com.forsrc.data.generator.item.Download;
 import com.forsrc.data.generator.item.Generator;
@@ -21,7 +21,7 @@ import javax.annotation.Resource;
 public class Start {
 
   @Resource
-  private ConfigForsrc configForsrc;  //不能删除
+  private ConfigClient configClient;  //不能删除
   @Resource
   private ToolBean toolBean;  //不能删除
   @Resource

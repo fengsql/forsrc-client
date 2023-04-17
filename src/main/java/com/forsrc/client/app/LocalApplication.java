@@ -1,7 +1,7 @@
 package com.forsrc.client.app;
 
 import com.forsrc.common.spring.named.NamedGenerator;
-import com.forsrc.data.common.constant.ConfigForsrc;
+import com.forsrc.data.common.constant.ConfigClient;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +25,7 @@ import java.util.Arrays;
 public class LocalApplication {
 
   public static void main(String[] args) {
-    String version = ConfigForsrc.VERSION;
+    String version = ConfigClient.VERSION;
     log.info("application start. version: {}", version);
     SpringApplication springApplication = new SpringApplication(LocalApplication.class);
     ConfigurableApplicationContext applicationContext = springApplication.run(args);
