@@ -5,7 +5,7 @@ import com.forsrc.common.exception.CommonException;
 import com.forsrc.common.tool.ToolBean;
 import com.forsrc.data.common.bean.ResultGenerator;
 import com.forsrc.data.common.constant.ConfigClient;
-import com.forsrc.data.common.tool.ToolGenerator;
+import com.forsrc.data.common.tool.ToolClient;
 import com.forsrc.data.generator.item.Download;
 import com.forsrc.data.generator.item.Generator;
 import com.forsrc.data.load.item.LoadDb;
@@ -40,7 +40,7 @@ public class Start {
   }
 
   private void startGenerator() {
-    ToolGenerator.checkConfig();
+    ToolClient.checkConfig();
     log.info("checkConfig ok.");
     String data = loadData();
     log.info("loadData ok.");
@@ -51,14 +51,16 @@ public class Start {
       return;
     }
     log.info("generator ok. app: {}. web: {}. sql: {}.",  //
-      resultGenerator.getSuccessApp(), resultGenerator.getSuccessWeb(), resultGenerator.getSuccessSql());
+      resultGenerator.getSuccessApp(),  //
+      resultGenerator.getSuccessWeb(),  //
+      resultGenerator.getSuccessSql());
     download(resultGenerator);
     log.info("download ok.");
   }
 
   private String loadData() {
     String data;
-    if (ToolGenerator.isGeneratorFromFile()) {
+    if (ToolClient.isGeneratorFromFile()) {
       data = loadFile();
     } else {
       data = loadDb();
