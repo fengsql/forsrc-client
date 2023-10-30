@@ -13,9 +13,9 @@ forsrc:
   # 授权部分，配置账号 username 和 secret
   authorization:
     # 用户名
-    username: 'forsrc'  #'forsrc@126.com'  #forsrc
+    username: 'forsrc'  # 测试账号，需要替换为自己的账号
     # 秘钥，不是密码，注册后会自动生成秘钥
-    secret: 'forsrc'  #'AQmjMZoAbs4tv5fwo1Dg7TBq4kPWLZJH'  #forsrc
+    secret: 'forsrc'  # 测试账号的 secret，需要替换为自己账号的 secret
   # 文件源配置，如果 generator.from-file 为 false，忽略此配置
   filesource:
     # 指定设计文档的路径，目前仅支持 docx 格式
@@ -98,3 +98,5 @@ forsrc:
       save-sql-path: ${project.generator.output.save-sql-path}
       # doc 的保存路径
       save-doc-path: ${project.generator.output.save-doc-path}
+      # 当被保护的文件或路径不存在时，是否创建。默认为 false 不创建，true 创建。
+#      create-when-protected-not-exist: ${project.generator.output.create-when-protected-not-exist}
