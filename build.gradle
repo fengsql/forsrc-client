@@ -48,27 +48,24 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     compile 'org.yeauty:netty-websocket-spring-boot-starter:0.9.4'
-//    implementation 'org.springframework.boot:spring-boot-starter-activemq:2.2.2'
     implementation 'de.codecentric:spring-boot-admin-starter-client'
     implementation 'org.apache.kafka:kafka-streams'
-    implementation 'org.liquibase:liquibase-core'
     implementation 'commons-io:commons-io:2.11.0'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-config'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
-//    implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
     testImplementation 'org.springframework.security:spring-security-test'
+    //hutool
+    implementation 'cn.hutool:hutool-all:5.8.12'
     //druid
     compile 'com.alibaba:druid-spring-boot-starter:1.2.15'
     //fastjson
-    implementation 'com.alibaba.fastjson2:fastjson2:2.0.25'
-    implementation 'com.alibaba.fastjson2:fastjson2-extension:2.0.25'
-    implementation 'com.alibaba.fastjson2:fastjson2-extension-spring5:2.0.25'
+    implementation 'com.alibaba:fastjson:1.2.83'
+    implementation 'com.alibaba.fastjson2:fastjson2:2.0.40'
+    implementation 'com.alibaba.fastjson2:fastjson2-extension:2.0.40'
+    implementation 'com.alibaba.fastjson2:fastjson2-extension-spring5:2.0.40'
     
     compile group: 'com.alibaba', name: 'easyexcel', version: '2.0.5'
     compile group: 'org.javatuples', name: 'javatuples', version: '1.2'
@@ -83,20 +80,14 @@ dependencies {
     //google
     compile 'com.google.guava:guava:28.1-jre'
     //okhttp
-//    compile 'com.squareup.okhttp3:okhttp:4.10.0'
     compile 'com.squareup.okhttp3:okhttp:3.12.0'
 
     // swagger
 //    compile group: 'com.github.xiaoymin', name: 'knife4j-spring-boot-starter', version: '2.0.3'
 
     //forsrc
-    compile 'io.github.fengsql:forsrc-common:1.0.0.06'
-    compile 'io.github.fengsql:forsrc-data:0.0.5'
-//    compile files("E:\\prog\\java\\feng\\setup\\lib-forsrc\\forsrc-common-1.0.jar")
-//    compile files("E:\\prog\\java\\feng\\setup\\lib-fava\\forsrc-data-1.0.jar")
-//    compile files("E:\\prog\\java\\feng\\prog\\forsrc\\common\\source\\build\\libs\\forsrc-common-1.0.jar")
-//    compile fil m ompile files("E:\\prog\\java\\feng\\prog\\forsrc\\data\\source\\build\\libs\\forsrc-data-1.0.jar")
-//    compile files("E:\\prog\\java\\feng\\setup\\lib-fava\\fava-compiler-tool-1.0.jar")
+    compile 'io.github.fengsql:forsrc-common:1.0.0.12'
+    compile 'io.github.fengsql:forsrc-data:0.0.10'
 
 }
 

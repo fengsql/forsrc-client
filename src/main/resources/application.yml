@@ -93,11 +93,11 @@ thread:
       queueCapacity: 100
       keepAliveSeconds: 300
       awaitTerminationSeconds: 60  #设置线程池中任务的等待时间，如果超过这个时候还没有销毁就强制销毁，而不是阻塞住
-      threadNamePrefix: "taskExecutor-"
+      threadNamePrefix: "executor-"
     scheduler:
       poolSize: 10
       awaitTerminationSeconds: 60  #
-      threadNamePrefix: "taskScheduler-"
+      threadNamePrefix: "scheduler-"
 
 okhttp:
   connect-timeout: 30
@@ -107,6 +107,11 @@ okhttp:
   max-idle-connections: 200
   # 连接空闲时间最多为 300 秒
   keep-alive-duration: 300
+  # 代理
+  proxy:
+    enable: false
+    host: '127.0.0.1'
+    port: 7890
 
 management:
   endpoints:
@@ -128,10 +133,7 @@ management:
 
 forsrc:
   server:
-#    host: https://www.forsrc.com
-#    host: localhost
-    host: https://gen.forsrc.com
-#    port: 6100
+    host: 'https://gen.forsrc.com'
     path:
-      generator: forsrc/generator
-      download: forsrc/download
+      generator: 'business/forsrc/generator'
+      download: 'business/forsrc/download'
